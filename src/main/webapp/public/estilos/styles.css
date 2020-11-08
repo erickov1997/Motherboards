@@ -1,0 +1,255 @@
+body{
+    background: #ebebeb;
+}
+*{
+    list-style: none;
+    text-decoration: none;
+}
+.tabla{
+    height: 400px;
+    overflow: auto;
+}
+.imgLogin,.contBtn{
+    display: flex;
+    justify-content: center;
+}
+.imgLogin img{
+    border-radius: 100%;
+    border:1px solid rgba(0,0,0,.19);
+    
+}
+.tarjeta{
+    margin: auto;
+    margin-top: 60px;
+}
+.card-body{
+    box-shadow: 0 1px 3px rgba(0,0,0,.3);
+}
+nav{
+    display: flex;
+    background: #007979;
+    height:50px;
+    box-shadow: 0 1px 3px rgba(0,0,0,1);
+}
+.navf{
+    display: flex;
+}
+.navli{
+    color: white;
+}
+.navli:hover{
+    color: white;
+}
+
+.menu-lateral{
+    grid-column:inicio/medio;
+    height: 644px;
+    background: #007979;
+    box-shadow: 0 1px 3px rgba(0,0,0,1);
+}
+.menu-lateral li, .navf li{
+    box-shadow: 0 1px 3px rgba(0,0,0,.5);
+    border-radius: 5px;
+}
+ .navf li{
+    box-shadow: 0 1px 3px rgba(0,0,0,.4);
+    border-radius: 5px;
+}
+
+.menu-lateral li:hover , .navf li:hover{
+  background-color: #00AEAE;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0,0,0,1);
+}
+.title{
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    margin-left: 20px;
+    margin-right: 60px;
+    cursor: pointer
+}
+.sesion li,.nav li{
+    color: white;
+    text-align: center;
+    width: 120px;
+    padding: 10px;
+    font-size: 19px;
+    font-weight: bold;
+     
+}
+.listas{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+.sesion{
+   // margin-left: 36.3%;
+}
+.sesion li{
+    width: 140px;
+    padding: 11px;
+    
+}
+
+h1{
+    text-align: center;
+    margin-top: 40px;
+}
+.contenedor{
+    display: grid;
+    
+    grid-template-columns:[inicio]20%[medio]80%[final];
+   
+}
+
+
+.menu-prov {
+    padding-left: 0;
+    margin-left: 0;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.menu-prov li{
+    list-style: none;
+    text-decoration: none;
+    padding: 20px;
+    padding-left: 0;
+    margin-left: 0;
+    border-top: : 1px solid white;
+    color: white;
+    cursor: pointer;
+    text-align: center;
+}
+
+.contenido{
+   grid-column: medio/final;
+  // border: 1px solid green;
+}
+
+
+
+.fdatos{
+    width: auto;
+    margin-left: 130px;
+}
+
+.datos_prov{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 30px;
+    background: white;
+    width: 90%;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0,0,0,.2);
+}
+
+.dato{
+ width: 26%;   
+}
+.dato,.datoLogin{
+    
+    margin: 20px;
+    border-left: transparent;
+    border-right: transparent;
+    border-top: transparent;
+    border-bottom: 1px solid rgba(0,0,0,.25);
+    
+}
+.agrProd{
+    background:  #007979;
+}
+
+.agrProd:hover{
+    background:  #007979;
+}
+.datoLogin{
+    width: 80%;
+}
+.botonagr{
+    display: flex;
+    justify-content: end;
+    margin-top: 20px;
+}
+
+.table{
+    width: 80%;
+    margin: auto;
+    background: white;
+    border-radius:10px;
+}
+
+@media screen and (max-width: 1200px){
+    
+     .contenedor{
+   
+}
+    
+    
+    .dato{
+     width: 35%;
+}
+.fdatos{
+    margin-left: 30px;
+    margin-right: 0;
+    width: auto;
+    
+}
+.datos_prov{
+    width: 95%;  
+}
+}
+
+@media screen and (max-width: 750px){
+    
+    h1{
+        font-size: 27px;
+    }
+    .title{
+        display:none;
+    }
+    .contenedor{
+    display: grid;
+    
+    grid-template-columns:[inicio]35%[medio]65%[final];
+   
+}
+
+.dato{
+    width: 90%;
+}
+
+.fdatos{
+    margin-left: 60px; 
+    width: auto;
+}
+
+.datos_prov{
+    margin-right: 20px;
+    width: 90%;
+    
+}
+.menu-prov {   
+    font-size: 14px;
+}
+}
+
+@media screen and (max-width: 500px){
+    
+     .contenedor{
+    display: grid;
+    
+    grid-template-columns:[inicio]25%[medio]75%[final];
+   
+}
+
+.menu-prov {   
+    font-size: 13px;
+}
+
+.sesion li,.nav li{
+    font-size: 15px;
+}
+}
