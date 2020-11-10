@@ -26,7 +26,7 @@ public class LoginValidations {
         handler.getConnection();
         List l = handler.executeQuery("SELECT * FROM usuarios where usuario='"+ usuario +"' AND password='"+password+"'");
         String tipo=(String) l.get(2);
-        //System.out.println("tipo: "+tipo);
+        System.out.println("tipo: "+tipo);
         return tipo;
     }
      

@@ -6,25 +6,25 @@ function validar(form){
     var expr=/^([0-9])*$/;
     
      if(expr.test(nombre)){ 
-          event.preventDefault();
+          //event.preventDefault();
          /*$("#agrAlmc").append("<h2>nombre vacio</h2>");*/
           alert("formato no valido"); 
          return false;
      }else if(nombre.length==0 || nombre.length>5){
-         event.preventDefault();
+         //event.preventDefault();
            /*$("#agrAlmc").append("<h2>descripcion vacio</h2>");*/
-              alert("El campo descripcion esta vacio"); 
+              alert("El campo nombre esta vacio"); 
         
          return false;
      }
      else if(descripcion===""){
-         event.preventDefault();
+         //event.preventDefault();
            /*$("#agrAlmc").append("<h2>descripcion vacio</h2>");*/
               alert("El campo descripcion esta vacio"); 
         
          return false;
      }else if(direccion===""){
-        event.preventDefault();
+        //event.preventDefault();
        /*$("#agrAlmc").append("<h2>direcion vacio</h2>"); */
           alert("El campo direccion esta vacio"); 
          return false;
