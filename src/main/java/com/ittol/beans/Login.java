@@ -39,12 +39,27 @@ public class Login implements Serializable {
     }
     
      public String process() throws ClassNotFoundException {
+        
         if (new LoginValidations().validate(usuario, password)) {
-            return "Productos/Productos.xhtml";
+           
+            if (new LoginValidations().obtUser(usuario, password).equals("user")) {
+                return "Productos/Productos.xhtml";
+                //return "user/agr_user.xhtml";
+            }else {
+             return "user/agr_user.xhtml";
+            }
+            
         } else {
             FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_ERROR,"Usuario o contraseña incorrectos", null);
             FacesContext.getCurrentInstance().addMessage(null, fm);
             return "index.xhtml";
         }
+        
     }
+     
+    /* public static void main(String[] args) throws ClassNotFoundException {
+       Login obj= new Login();
+       obj.process();
+       
+    }*/
 }

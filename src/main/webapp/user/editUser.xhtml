@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"></link>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous"></link>
+    <link rel="stylesheet" href="../public/estilos/styles.css"></link>
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <nav>
+            <span class="title">Motherboards</span>
+            <div class="listas">
+                 <ul class="nav">
+               
+                
+            </ul>
+            <ul class="sesion">
+                <h:form class="navf">
+                 <li><h:commandLink action="/index.xhtml" class="navli">Cerrar sesion</h:commandLink> </li>
+                </h:form>
+            </ul>
+            </div>
+            
+           
+        </nav>
+        
+        <div class="contenedor">
+            <div class="menu-lateral">
+                <ul class="menu-prov">
+                     <h:form >
+                        <li><h:commandLink action="agr_user.xhtml" class="navli">Agregar Usuario</h:commandLink> </li>
+                        <li><h:commandLink action="#{appUser.editvista()}" class="navli">Editar Usuario</h:commandLink> </li> 
+                        <li><h:commandLink action="#{appUser.process()}" class="navli">Consultar Usuarios</h:commandLink> </li>                       
+                    </h:form>
+                </ul>
+                
+            </div>
+            <div class="contenido">
+                <h1>Editar usuario</h1>
+                <h:form class="fdatos">
+                    <h:selectOneMenu id="almc" class="form-control dato" value="#{appUser.id}">
+                           <f:selectItem itemLabel="---Seleccione usuario----" />
+                           <f:selectItems  value="#{appUser.listidUsers}"/>
+                           
+                       </h:selectOneMenu>
+                    <div class="botonagr">
+                        <h:commandButton class="btn btn-primary agrProd" action="#{appUser.searchuser()}" value="Buscar" ></h:commandButton>
+                    </div>
+                </h:form>
+                <h:form class="fdatos">
+                    <h:messages errorStyle="color:red" infoStyle="registro correcto"/>
+                    <div class="datos_prov">
+                      
+                        <h:inputText class="form-control dato" a:placeholder="nombre" value="#{appUser.nombre}" required="true" requiredMessage="Ingrese cantidad"/>
+                        <h:inputText class="form-control dato" a:placeholder="Apellido Paterno"  value="#{appUser.ape_pat}" required="true" requiredMessage="Ingrese cantidad"/>
+                        <h:inputText class="form-control dato" a:placeholder="Apellido Materno"  value="#{appUser.ape_mat}" required="true" requiredMessage="Ingrese cantidad"/>
+                        <h:inputText class="form-control dato" a:placeholder="Usuario"  required="true"  value="#{appUser.usuario}" requiredMessage="Ingrese cantidad"/>
+                        <h:inputText class="form-control dato" a:placeholder="Contraseña"  value="#{appUser.password}"  required="true" requiredMessage="Ingrese cantidad"/>
+                        <h:selectOneMenu class="form-control dato" value = "#{appUser.tipo}">
+                            <f:selectItem  itemLabel = "---Seleccione tipo de usuario" /> 
+                            <f:selectItem itemValue = "user" itemLabel = "user" /> 
+                            <f:selectItem itemValue = "admin" itemLabel = "admin" /> 
+                        </h:selectOneMenu> 
+                    </div>
+                   
+                    
+                   
+                    <div class="botonagr">
+                        <h:commandButton class="btn btn-primary agrProd" value="Editar" action="#{appUser.edituser()}"></h:commandButton>
+                    </div>
+                    
+                </h:form>
+               
+            </div>
+        </div>
+    </h:body>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+</html>
+

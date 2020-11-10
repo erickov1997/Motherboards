@@ -53,7 +53,7 @@
             </div>
             <div class="contenido">
                 <h1>Registrar Almacen</h1>
-                <h:form class="fdatos" id="agrAlmc" >
+                <h:form class="fdatos" id="agrAlmc"  onclick="validar(this.form)">
                    <!--  <h:messages errorStyle="color:red"/>-->
                     <div class="datos_prov">
                        
@@ -75,7 +75,7 @@
                     
                    
                     <div class="botonagr">
-                       <h:commandButton id="btnalmc"  class="btn btn-primary " value="Registrar" action="#{appAlmacen.agrAlmacen()}"  onclick = " validar(this.form);" />
+                       <h:commandButton id="btnalmc"  class="btn btn-primary agrProd" value="Registrar" action="#{appAlmacen.agrAlmacen()}"  />
                             <!--<h:commandButton id="btnalmc"  class="btn btn-primary " value="Registrar" action="#{appAlmacen.agrAlmacen()}"    />  -->                 
      
                          
@@ -84,9 +84,9 @@
                     
                    
                 </h:form>
-       <h:form>
+      <!-- <h:form>
          <h:commandButton onclick = "showMessage();" />
-      </h:form> 
+      </h:form> -->
             </div>
         </div>
             

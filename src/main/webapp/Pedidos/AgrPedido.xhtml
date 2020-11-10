@@ -4,14 +4,22 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" ></link>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"></link>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous"></link>
     <link rel="stylesheet" href="../public/estilos/styles.css"></link>
+  
+
     <h:head>
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-         <nav>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js" />
+        <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" />
+        <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" />
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+        <nav>
             <span class="title">Motherboards</span>
             <div class="listas">
                  <ul class="nav">
@@ -55,7 +63,7 @@
                        </h:selectOneMenu>
                         
                         <h:inputText class="form-control dato" a:placeholder="cantidad" value="#{appPedido.cantidad}" required="true" requiredMessage="Ingrese cantidad"/>
-                        <h:inputText class="form-control dato" a:placeholder="Fecha de entrega" value="#{appPedido.fecha}" required="true" requiredMessage="Ingrese fecha de entrega"/>
+                        <h:inputText  styleClass="form-control datepicker dato" a:placeholder="fecha" value="#{appPedido.fecha}"  />
                        
                     </div>
                    
@@ -65,14 +73,20 @@
                         <h:commandButton class="btn btn-primary agrProd" value="Registrar" action="#{appPedido.agrPedido()}"></h:commandButton>
                     </div>
                     
-                    
-                   
                 </h:form>
+                <script type="text/javascript" language="javascript">
+                    $(document).ready(function(){
+                        $(".datepicker").datepicker({
+                            dateFormat:'yy/mm/dd',
+                            changeMonth:true,
+                            changeYear:true,
+                            yearRange:'2000:2020'
+                        });
+                    });
+                </script>
             </div>
         </div>
     </h:body>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
 </html>
 

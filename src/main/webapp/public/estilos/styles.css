@@ -89,7 +89,7 @@ nav{
 .sesion li{
     width: 140px;
     padding: 11px;
-    
+    background: #007979;
 }
 
 h1{
@@ -234,6 +234,10 @@ h1{
 .menu-prov {   
     font-size: 14px;
 }
+.card{
+    margin-left: -60px;
+    width: 300px;
+}
 }
 
 @media screen and (max-width: 500px){
@@ -252,4 +256,6 @@ h1{
 .sesion li,.nav li{
     font-size: 15px;
 }
+
+
 }

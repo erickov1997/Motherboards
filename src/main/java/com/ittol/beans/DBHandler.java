@@ -8,6 +8,7 @@ package com.ittol.beans;
 import com.ittol.almacen.Almacen;
 import com.ittol.pedidos.Pedidos;
 import com.ittol.productos.Productos;
+import com.ittol.users.Usuarios;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -53,6 +54,7 @@ public class DBHandler {
                 while (rs.next()) {
                     l.add(rs.getString("usuario"));
                     l.add(rs.getString("password"));
+                     l.add(rs.getString("tipo"));
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(DBHandler.class.getName()).log(Level.SEVERE, null, ex);
@@ -69,10 +71,7 @@ public class DBHandler {
                 ResultSet rs = ps.executeQuery();
                 l = new ArrayList();
                 while (rs.next()) {
-                     //l.add(rs.getInt("id_alc"));
-                     //l.add(rs.getString("nombre"));
-                     //l.add(rs.getString("descripcion"));
-                     //l.add(rs.getString("direccion"));
+                     
                      Almacen alm = new Almacen();
                      alm.setDescripcion(rs.getString("descripcion"));
                      alm.setDireccion(rs.getString("direccion"));
@@ -86,6 +85,50 @@ public class DBHandler {
         }
         return l;
      }
+     
+     public  List UserList(String sqlStatement) {
+        List u = null;
+        if (conn != null) {
+            try {
+                PreparedStatement ps = conn.prepareStatement(sqlStatement);
+                ResultSet rs = ps.executeQuery();
+                u = new ArrayList();
+                while (rs.next()) {
+                     
+                    Usuarios user = new Usuarios();
+                    user.setId(String.valueOf(rs.getInt("id_usuario")) );
+                    user.setNombre(rs.getString("nombre"));
+                    user.setApe_pat(rs.getString("ape_pat"));
+                    user.setApe_mat(rs.getString("ape_mat"));
+                    user.setUsuario(rs.getString("usuario"));
+                    user.setPassword(rs.getString("password"));
+                    user.setTipo(rs.getString("tipo"));
+
+                    u.add(user);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(DBHandler.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return u;
+     }
+     public List IDUser(String sqlStatement) {
+        List l = null;
+        if (conn != null) {
+            try {
+                PreparedStatement ps = conn.prepareStatement(sqlStatement);
+                ResultSet rs = ps.executeQuery();
+                l = new ArrayList();
+                while (rs.next()) {
+                     l.add(rs.getString("id_usuario"));
+                   
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(DBHandler.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return l;
+    }
      
      public  List ProductosList(String sqlStatement) {
         List l = null;

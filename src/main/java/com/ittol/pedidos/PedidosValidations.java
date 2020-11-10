@@ -46,7 +46,7 @@ public class PedidosValidations {
         DBHandler handler = new DBHandler();
         handler.getConnection();
         List lst = handler.PedidoList("SELECT * FROM pedidos");
-        System.out.println("Pedidoslist: "+lst);
+        //System.out.println("Pedidoslist: "+lst);
         return lst;
     }   
     
