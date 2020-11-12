@@ -64,15 +64,6 @@
                 <h:form class="fdatos">
                     <div class="datos_prov">
                       
-                      <!-- <h:inputText class="form-control dato" a:placeholder="Nombre" value="#{appProduct.nombre}" required="true" requiredMessage="Ingrese nombre"/>
-                       <h:inputText class="form-control dato" a:placeholder="Tipo" value="#{appProduct.tipo}" required="true" requiredMessage="Ingrese tipo"/>
-                       <h:inputText class="form-control dato" a:placeholder="Familia Procesador" value="#{appProduct.fam_proc}" required="true" requiredMessage="Ingrese Familia de procesador"/>
-                       <h:inputText class="form-control dato" a:placeholder="Memoria Interna" value="#{appProduct.mem_int}" required="true" requiredMessage="Ingrese Memoria interna"/>
-                       <h:inputText class="form-control dato" a:placeholder="Tipo de memoria" value="#{appProduct.tipo_meoria}" required="true" requiredMessage="Ingrese tipo de memoria"/>
-                       <h:inputText class="form-control dato" a:placeholder="Precio unitario" value="#{appProduct.prec_uni}" required="true" requiredMessage="Ingrese precio unitario" />-->
-                         <h:inputText class="form-control dato" a:placeholder="Codigo" value="#{appProduct.id_prod}" required="true" requiredMessage="Ingrese codigo">
-                            <f:validateLength minimum = "5" maximum = "5" />
-                        </h:inputText>
                         <h:inputText class="form-control dato" a:placeholder="Nombre" value="#{appProduct.nombre}" required="true" requiredMessage="Ingrese nombre"/>
 
                         <h:selectOneMenu class="form-control dato" value = "#{appProduct.tipo}">
@@ -95,16 +86,12 @@
                         </h:selectOneMenu> 
                         
                          <h:selectOneMenu class="form-control dato" value = "#{appProduct.tipo_meoria}">
-                            <f:selectItem  itemLabel = "---Tipo de Memoria---" /> 
+                            <f:selectItem itemLabel = "---Tipo de Memoria---" /> 
                             <f:selectItem itemValue = "DDR4 DIMM" itemLabel = "DDR4 DIMM" /> 
                             <f:selectItem itemValue = "DDR4-SDRAM" itemLabel = "DDR4-SDRAM" />
            
                         </h:selectOneMenu> 
-                        <h:selectOneMenu id="almc" class="form-control dato" value="#{appProduct.almacen}" required="true" requiredMessage="Seleccione almacen">
-                           <f:selectItem itemLabel="---Almacen----" />
-                           <f:selectItems  value="#{appProduct.listidAlmacen}"/>
-                           
-                       </h:selectOneMenu>
+                        
                         
                         <h:inputText class="form-control dato" a:placeholder="Precio unitario" value="#{appProduct.prec_uni}" required="true" requiredMessage="Ingrese precio unitario"/>
                     

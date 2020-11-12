@@ -45,9 +45,9 @@
             <div class="menu-lateral">
                 <ul class="menu-prov">
                     <h:form >
-                        <li><h:commandLink action="Inventario" class="navli">Inventario</h:commandLink> </li>
-                         <li><h:commandLink action="Entradas" class="navli">Entradas</h:commandLink> </li>
-                        <li><h:commandLink action="Salidas" class="navli">Salidas</h:commandLink> </li>
+                        <li><h:commandLink action="Inventario.xhtml" class="navli">Inventario</h:commandLink> </li>
+                         <li><h:commandLink action="Entradas.xhtml" class="navli">Entradas</h:commandLink> </li>
+                        <li><h:commandLink action="Salidas.xhtml" class="navli">Salidas</h:commandLink> </li>
                     </h:form>
                 </ul>
 
@@ -58,20 +58,20 @@
                       <h:messages errorStyle="color:red"/>
                     <div class="datos_prov">
                       
-                        <h:selectOneMenu id="almc" class="form-control dato" value="#{appEntradas.id_prod}">
+                        <h:selectOneMenu id="almc" class="form-control dato" value="#{appSalidas.id_prod}">
                            <f:selectItem itemLabel="---Producto----" />
                            <f:selectItems  value="#{appInv.listidProd}"/>
                            
                        </h:selectOneMenu>
-                        <h:inputText class="form-control dato" a:placeholder="cantidad" value="#{appEntradas.cantidad}" required="true" requiredMessage="Ingrese cantidad"/>
-                        <h:inputText class="form-control dato datepicker" a:placeholder="fecha de salida" value="#{appEntradas.fecha}"/>
+                        <h:inputText class="form-control dato" a:placeholder="cantidad" autocomplete="off" value="#{appSalidas.cantidad}" required="true" requiredMessage="Ingrese cantidad"/>
+                        <h:inputText class="form-control dato datepicker" autocomplete="off" a:placeholder="fecha de salida" value="#{appSalidas.fecha}"/>
           
                     </div>
                    
                     
                    
                     <div class="botonagr">
-                        <h:commandButton class="btn btn-primary agrProd" value="Registrar" action="#{appEntradas.agrSalida()}"></h:commandButton>
+                        <h:commandButton class="btn btn-primary agrProd" value="Registrar" action="#{appSalidas.agrSalida()}"></h:commandButton>
                     </div>
                     
                 </h:form>

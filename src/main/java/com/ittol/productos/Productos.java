@@ -227,10 +227,6 @@ public class Productos implements Serializable {
         
     } 
        
-       public static void main(String[] args) throws ClassNotFoundException {
-        Productos obj = new Productos();
-        obj.EditProducto();
-        
-    }
+       
     
 }

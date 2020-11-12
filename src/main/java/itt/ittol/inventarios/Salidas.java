@@ -5,7 +5,6 @@
  */
 package itt.ittol.inventarios;
 
-import com.ittol.almacen.AlmacenValidations;
 import java.io.Serializable;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
@@ -16,10 +15,9 @@ import javax.inject.Named;
  *
  * @author Erick
  */
-@Named("appEntradas")
+@Named("appSalidas")
 @SessionScoped
-public class Entradas implements Serializable {
-    
+public class Salidas implements Serializable {
     private String id_ent;
     private String id_prod;
     private String fecha;
@@ -57,20 +55,24 @@ public class Entradas implements Serializable {
         this.cantidad = cantidad;
     }
     
-     public void agrEntrada() throws ClassNotFoundException {
+      public String agrSalida() throws ClassNotFoundException {
         
-        int stock= Integer.parseInt(cantidad);
-        new InventariosValidations().InsertEntrada(id_prod, fecha, stock);
-            
+        int cantid= Integer.parseInt(cantidad);
+       
+        int stock=(int) new InventariosValidations().GetStockProd(id_prod).get(0);
+        
+          if (stock < cantid) {
+              FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_ERROR,"No hay productos suficientes para realizar la salida de productos", null);
+              FacesContext.getCurrentInstance().addMessage(null, fm);
+              return "Salidas.xhtml";
+          }else{
+                 
+               new InventariosValidations().InsertSalida(id_prod, fecha,cantid );
+               FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_INFO,"Salida de productos registrada correctamente",null);
+               FacesContext.getCurrentInstance().addMessage(null, fm);
+            return "Salidas.xhtml";
+          }
+          
     } 
      
-    
-    
-     public static void main(String[] args) throws ClassNotFoundException {
-       /* Entradas obj = new Entradas();
-        obj.agrSalida();*/
-        
-    }
-    
-    
 }

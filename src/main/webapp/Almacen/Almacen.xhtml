@@ -1,4 +1,3 @@
-<?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
@@ -53,6 +52,9 @@
             </div>
             <div class="contenido">
                 <h1>Registrar Almacen</h1>
+                <h:messages errorStyle="color:red;width:500px;text-align:center;background:#f8d7da;border-radius:5px; box-shadow: 0 1px 3px rgba(0,0,0,.5);padding:10px;margin: auto;margin-top:20px"
+                            infoStyle="color:green;width:300px;text-align:center;background:#d4edda;border-radius:5px; box-shadow: 0 1px 3px rgba(0,0,0,.5);padding:10px;margin: auto;margin-top:20px"/>
+
                 <h:form class="fdatos" id="agrAlmc"  onclick="validar(this.form)">
                    <!--  <h:messages errorStyle="color:red"/>-->
                     <div class="datos_prov">
@@ -75,8 +77,8 @@
                     
                    
                     <div class="botonagr">
-                       <h:commandButton id="btnalmc"  class="btn btn-primary agrProd" value="Registrar" action="#{appAlmacen.agrAlmacen()}"  />
-                            <!--<h:commandButton id="btnalmc"  class="btn btn-primary " value="Registrar" action="#{appAlmacen.agrAlmacen()}"    />  -->                 
+                        <h:commandButton id="btnalmc"  class="btn btn-primary agrProd" value="Registrar" action="#{appAlmacen.agrAlmacen()}" onclick = "validar(form);"/>
+                                          
      
                          
                     </div>
@@ -99,4 +101,3 @@
  <script type="text/javascript" src="validaciones.js"></script>
  
 </html>
-

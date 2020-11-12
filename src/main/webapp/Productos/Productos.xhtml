@@ -84,9 +84,10 @@
                         </h:selectOneMenu> 
                         <h:selectOneMenu id="almc" class="form-control dato" value="#{appProduct.almacen}" required="true" requiredMessage="Seleccione almacen">
                            <f:selectItem itemLabel="---Almacen----" />
-                           <f:selectItems  value="#{appProduct.listidAlmacen}"/>
+                           <f:selectItems  value="#{appProduct.listidAlmacen}" itemLabel="appp"  />
                            
                        </h:selectOneMenu>
+                        
                         
                         <h:inputText class="form-control dato" a:placeholder="Precio unitario" value="#{appProduct.prec_uni}" required="true" requiredMessage="Ingrese precio unitario"/>
                     </div>

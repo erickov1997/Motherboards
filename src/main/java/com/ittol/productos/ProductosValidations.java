@@ -42,12 +42,5 @@ public class ProductosValidations {
         handler.getConnection();
         handler.executeInsert("UPDATE \"Productos\" SET nombre='"+nombre+"', tipo='"+tipo+"',fam_proc='"+fam_proc+"',mem_int='"+mem_int+"',tipo_meoria='"+tipo_meoria+"',prec_uni='"+prec_uni+"' WHERE id_prod='"+id_prod+"'");  
     }
-     public static void main(String[] args) {
-         try {
-             ProductosValidations obj= new ProductosValidations();
-             obj.ProductoEdit("56fg");
-         } catch (ClassNotFoundException ex) {
-             Logger.getLogger(ProductosValidations.class.getName()).log(Level.SEVERE, null, ex);
-         }
-    }
+    
 }
