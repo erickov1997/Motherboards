@@ -96,27 +96,31 @@ public class Almacen implements Serializable {
        public void agrAlmacen() throws ClassNotFoundException {
             Pattern pat = Pattern.compile("^([0-9])*$");
             Matcher mat = pat.matcher(descripcion); 
-            Pattern cat = Pattern.compile("[a-zA-Z ñ 0-9]{1,15}$");
-            Matcher eat = cat.matcher(nombre); 
+            
+            Pattern cat = Pattern.compile("[a-zA-Z ñ 0-9 á é í ó ú]{1,20}$");
+            Matcher eat = cat.matcher(nombre);
+            Matcher van = cat.matcher(descripcion);
+            
            if (nombre.equals("")) {
                FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_ERROR,"El campo nombre se encuentra vacio", null);
                FacesContext.getCurrentInstance().addMessage(null, fm);
            }else if(!eat.matches()){
-               FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_ERROR,"El campo nombre no puede contener caracteres especiales o la longitud supera los 15 caracteres", null);
+               FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_ERROR,"El campo nombre no puede contener caracteres especiales o la longitud supera los 20 caracteres", null);
                FacesContext.getCurrentInstance().addMessage(null, fm);
            }
            else if(descripcion.equals("")){
                FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_ERROR,"El campo descripcion se encuentra vacio", null);
                FacesContext.getCurrentInstance().addMessage(null, fm);
-           }else if(mat.matches()){
-                FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_ERROR,"El campo descripcion solo puede contener letras", null);
-               FacesContext.getCurrentInstance().addMessage(null, fm);
+           }else if(van.matches()){
+                FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_ERROR,"El campo nombre no puede contener caracteres especiales o la longitud supera los 20 caracteres", null);
+                FacesContext.getCurrentInstance().addMessage(null, fm);
        }else if(direccion.equals("")){
                FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_ERROR,"El direccion se encuentra vacio", null);
                FacesContext.getCurrentInstance().addMessage(null, fm);
            }else{
                FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_INFO,"Almacen registrado correctamente",null);
                FacesContext.getCurrentInstance().addMessage(null, fm);
+               
                new AlmacenValidations().InsertAlmacen(nombre, descripcion, direccion);
                System.out.println(nombre + descripcion + direccion);
            }
