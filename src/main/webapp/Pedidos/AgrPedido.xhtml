@@ -53,21 +53,21 @@
             </div>
             <div class="contenido">
                 <h1>Pedido</h1>
+                
                 <h:form class="fdatos">
-                    <h:messages errorStyle="color:red" infoStyle="registro correcto"/>
+                    <h:messages errorStyle="color:red;width:auto;text-align:center;background:#f8d7da;border-radius:5px; box-shadow: 0 1px 3px rgba(0,0,0,.5);padding:10px;margin-left:25%;margin-right:25%;margin-top:20px"
+                            infoStyle="color:green;width:auto;text-align:center;background:#d4edda;border-radius:5px; box-shadow: 0 1px 3px rgba(0,0,0,.5);padding:10px;margin-left:25%;margin-right:25%;margin-top:20px"/>
                     <div class="datos_prov">
                       
-                        <h:selectOneMenu id="almc" class="form-control dato" value="#{appPedido.id_prod}" required="true" requiredMessage="Ingrese producto">
+                        <h:selectOneMenu id="almc" class="form-control dato" value="#{appPedido.id_prod}" required="true" requiredMessage="Debe seleccionar un producto" >
                            <f:selectItem itemLabel="---Producto----" />
                            <f:selectItems  value="#{appInv.listidProd}"/>    
                        </h:selectOneMenu>
                         
-                        <h:inputText class="form-control dato" a:placeholder="cantidad" value="#{appPedido.cantidad}" required="true" requiredMessage="Ingrese cantidad"/>
-                        <h:inputText  styleClass="form-control datepicker dato" a:placeholder="fecha" value="#{appPedido.fecha}"  />
-                       
+                        <h:inputText class="form-control dato" a:placeholder="cantidad"  autocomplete="off" value="#{appPedido.cantidad}"/>
+                        <h:inputText  styleClass="form-control datepicker dato" autocomplete="off" a:placeholder="fecha" value="#{appPedido.fecha}"  />
+           
                     </div>
-                   
-                    
                    
                     <div class="botonagr">
                         <h:commandButton class="btn btn-primary agrProd" value="Registrar" action="#{appPedido.agrPedido()}"></h:commandButton>

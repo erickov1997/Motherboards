@@ -58,19 +58,19 @@
                         <h:commandButton class="btn btn-primary agrProd" value="Buscar" action="#{appAlmacen.process3()}"></h:commandButton>
                     </div>
                 </h:form>
+                <h:messages errorStyle="color:red;width:auto;text-align:center;background:#f8d7da;border-radius:5px; box-shadow: 0 1px 3px rgba(0,0,0,.5);padding:10px;margin-left:25%;margin-right:25%;margin-top:20px"
+                            infoStyle="color:green;width:auto;text-align:center;background:#d4edda;border-radius:5px; box-shadow: 0 1px 3px rgba(0,0,0,.5);padding:10px;margin-left:25%;margin-right:25%;margin-top:20px"/>
                 <h:form class="fdatos">
-                    <h:messages errorStyle="color:red"/>
+                   
                     <div class="datos_prov">
                       
-                        <h:inputText class="form-control dato" a:placeholder="Nombre" value="#{appAlmacen.nombre}"  required="true" requiredMessage="Ingrese nombre">
-                            <f:validateLength minimum = "3" maximum = "15" />
+                        <h:inputText class="form-control dato" a:placeholder="Nombre" value="#{appAlmacen.nombre}">
                         </h:inputText>
-                        <h:inputText class="form-control dato" a:placeholder="Direccion" value="#{appAlmacen.descripcion}"  required="true" requiredMessage="Ingrese descripcion">
-                            <f:validateLength minimum = "3" maximum = "20" />
+                        <h:inputText class="form-control dato" a:placeholder="Direccion" value="#{appAlmacen.descripcion}"  >
                         </h:inputText>
                          
-                        <h:inputText class="form-control dato" a:placeholder="Descripcion" value="#{appAlmacen.direccion}"  required="true" requiredMessage="Ingrese direccion">
-                            <f:validateLength minimum = "3" maximum = "25" />
+                        <h:inputText class="form-control dato" a:placeholder="Descripcion" value="#{appAlmacen.direccion}">
+                            
                         </h:inputText>
           
                     </div>

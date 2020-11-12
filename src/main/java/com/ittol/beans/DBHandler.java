@@ -172,7 +172,7 @@ public class DBHandler {
                      Pedidos pedido = new Pedidos();
                      pedido.setId_pedido(rs.getInt("id_pedido"));
                      pedido.setId_prod(rs.getString("id_prod"));
-                     pedido.setCantidad(rs.getInt("cantidad"));
+                     pedido.setCantidad(rs.getString("cantidad"));
                      pedido.setTotal(rs.getDouble("total")); 
                      pedido.setStatus(rs.getString("status"));
                      pedido.setFecha(rs.getString("fecha"));

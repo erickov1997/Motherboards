@@ -60,32 +60,33 @@
                   
                    
                 </h:form>
-                
+                <h:messages errorStyle="color:red;width:auto;text-align:center;background:#f8d7da;border-radius:5px; box-shadow: 0 1px 3px rgba(0,0,0,.5);padding:10px;margin-left:25%;margin-right:25%;margin-top:20px"
+                            infoStyle="color:green;width:auto;text-align:center;background:#d4edda;border-radius:5px; box-shadow: 0 1px 3px rgba(0,0,0,.5);padding:10px;margin-left:25%;margin-right:25%;margin-top:20px"/>
                 <h:form class="fdatos">
                     <div class="datos_prov">
                       
-                        <h:inputText class="form-control dato" a:placeholder="Nombre" value="#{appProduct.nombre}" required="true" requiredMessage="Ingrese nombre"/>
+                        <h:inputText class="form-control dato" a:placeholder="Nombre" value="#{appProduct.nombre}"/>
 
-                        <h:selectOneMenu class="form-control dato" value = "#{appProduct.tipo}">
+                        <h:selectOneMenu class="form-control dato" value = "#{appProduct.tipo}" required="true" requiredMessage="Debe seleccionar un tipo">
                             <f:selectItem  itemLabel = "---Tipo---" /> 
                             <f:selectItem itemValue = " ATX" itemLabel = " ATX" /> 
                             <f:selectItem itemValue = "micro ATX" itemLabel = "micro ATX" /> 
                             <f:selectItem itemValue = "Flex ATX" itemLabel = "Flex ATX" /> 
                         </h:selectOneMenu> 
 
-                        <h:selectOneMenu class="form-control dato" value = "#{appProduct.fam_proc}">
+                        <h:selectOneMenu class="form-control dato" value = "#{appProduct.fam_proc}" required="true" requiredMessage="Debe seleccionar Familia de procesador">
                             <f:selectItem  itemLabel = "---Familia de Procesador---" /> 
                             <f:selectItem itemValue = "AMD" itemLabel = "AMD" /> 
                             <f:selectItem itemValue = "Intel" itemLabel = "INTEL" /> 
                         </h:selectOneMenu> 
                         
-                        <h:selectOneMenu class="form-control dato" value = "#{appProduct.mem_int}">
+                        <h:selectOneMenu class="form-control dato" value = "#{appProduct.mem_int}" required="true" requiredMessage="Debe seleccionar Memoria interna">
                             <f:selectItem  itemLabel = "---Memoria Interna---" /> 
                             <f:selectItem itemValue = "32 GB" itemLabel = "32 GB" /> 
                             <f:selectItem itemValue = "64 GB" itemLabel = "64 GB" />               
                         </h:selectOneMenu> 
                         
-                         <h:selectOneMenu class="form-control dato" value = "#{appProduct.tipo_meoria}">
+                         <h:selectOneMenu class="form-control dato" value = "#{appProduct.tipo_meoria}" required="true" requiredMessage="Debe seleccionar un tipo de Memoria">
                             <f:selectItem itemLabel = "---Tipo de Memoria---" /> 
                             <f:selectItem itemValue = "DDR4 DIMM" itemLabel = "DDR4 DIMM" /> 
                             <f:selectItem itemValue = "DDR4-SDRAM" itemLabel = "DDR4-SDRAM" />

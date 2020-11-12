@@ -52,16 +52,17 @@
                     </div>
                 </h:form>
                 <h:form class="fdatos">
-                    <h:messages errorStyle="color:red" infoStyle="registro correcto"/>
+                    <h:messages errorStyle="color:red;width:auto;text-align:center;background:#f8d7da;border-radius:5px; box-shadow: 0 1px 3px rgba(0,0,0,.5);padding:10px;margin-left:25%;margin-right:25%;margin-top:20px"
+                            infoStyle="color:green;width:auto;text-align:center;background:#d4edda;border-radius:5px; box-shadow: 0 1px 3px rgba(0,0,0,.5);padding:10px;margin-left:25%;margin-right:25%;margin-top:20px"/>
                     <div class="datos_prov">
                       
-                        <h:inputText class="form-control dato" a:placeholder="nombre" value="#{appUser.nombre}" required="true" requiredMessage="Ingrese cantidad"/>
-                        <h:inputText class="form-control dato" a:placeholder="Apellido Paterno"  value="#{appUser.ape_pat}" required="true" requiredMessage="Ingrese cantidad"/>
-                        <h:inputText class="form-control dato" a:placeholder="Apellido Materno"  value="#{appUser.ape_mat}" required="true" requiredMessage="Ingrese cantidad"/>
-                        <h:inputText class="form-control dato" a:placeholder="Usuario"  required="true"  value="#{appUser.usuario}" requiredMessage="Ingrese cantidad"/>
-                        <h:inputText class="form-control dato" a:placeholder="Contraseña"  value="#{appUser.password}"  required="true" requiredMessage="Ingrese cantidad"/>
-                        <h:selectOneMenu class="form-control dato" value = "#{appUser.tipo}">
-                            <f:selectItem  itemLabel = "---Seleccione tipo de usuario" /> 
+                        <h:inputText class="form-control dato" a:placeholder="nombre" value="#{appUser.nombre}" />
+                        <h:inputText class="form-control dato" a:placeholder="Apellido Paterno"  value="#{appUser.ape_pat}" />
+                        <h:inputText class="form-control dato" a:placeholder="Apellido Materno"  value="#{appUser.ape_mat}" />
+                        <h:inputText class="form-control dato" a:placeholder="Usuario"  required="true"  value="#{appUser.usuario}" />
+                        <h:inputText class="form-control dato" a:placeholder="Contraseña"  value="#{appUser.password}"  />
+                        <h:selectOneMenu class="form-control dato" value = "#{appUser.tipo}" >
+                            <f:selectItem itemValue = "tipo" itemLabel = "---Seleccione tipo de usuario" /> 
                             <f:selectItem itemValue = "user" itemLabel = "user" /> 
                             <f:selectItem itemValue = "admin" itemLabel = "admin" /> 
                         </h:selectOneMenu> 

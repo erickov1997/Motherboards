@@ -12,7 +12,11 @@ import com.ittol.productos.ProductosValidations;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 import javax.inject.Named;
 
@@ -110,7 +114,43 @@ public class Usuarios implements Serializable{
     }
     
     public void agrUser() throws ClassNotFoundException {
-        new UsuariosValidations().InsertUusario(nombre, ape_pat, ape_mat, usuario, password, tipo);
+         Pattern cat = Pattern.compile("[a-zA-Z ñ á é í ó ú]{1,20}$");
+         Matcher eat = cat.matcher(nombre);
+         Matcher pat = cat.matcher(ape_pat);
+         Matcher mat = cat.matcher(ape_mat);
+        if (nombre.equals("")) {
+            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo nombre se encuentra vacio", null);
+            FacesContext.getCurrentInstance().addMessage(null, fm);
+        }else if(!eat.matches()){
+            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo nombre no puede contener numeros o caracteres especiales", null);
+            FacesContext.getCurrentInstance().addMessage(null, fm);
+        } else if (ape_pat.equals("")) {
+            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo apellido paterno se encuentra vacio", null);
+            FacesContext.getCurrentInstance().addMessage(null, fm);
+        } else if(!pat.matches()){
+            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo apellido paterno no puede contener numeros o caracteres especiales", null);
+            FacesContext.getCurrentInstance().addMessage(null, fm);
+        }else if (ape_mat.equals("")) {
+            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo apellido materno se encuentra vacio", null);
+            FacesContext.getCurrentInstance().addMessage(null, fm);
+        }else if(!mat.matches()){
+            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo apellido materno no puede contener numeros o caracteres especiales", null);
+            FacesContext.getCurrentInstance().addMessage(null, fm);
+        } else if (usuario.equals("")) {
+            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo usuario se encuentra vacio", null);
+            FacesContext.getCurrentInstance().addMessage(null, fm);
+        } else if (password.equals("")) {
+            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo password se encuentra vacio", null);
+            FacesContext.getCurrentInstance().addMessage(null, fm);
+        }else if (tipo.equals("tipo")) {
+            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Debe seleccionar el tipo de usuario", null);
+            FacesContext.getCurrentInstance().addMessage(null, fm);
+        } else {
+                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario registrado correctamente", null);
+            FacesContext.getCurrentInstance().addMessage(null, fm);
+            new UsuariosValidations().InsertUusario(nombre, ape_pat, ape_mat, usuario, password, tipo);
+        }
+
            
     }  
     
@@ -170,7 +210,44 @@ public class Usuarios implements Serializable{
     }  
     
      public void edituser() throws ClassNotFoundException {
-      new UsuariosValidations().Editar(Integer.parseInt(id), nombre, ape_pat, ape_mat, usuario, password, tipo);
+         Pattern cat = Pattern.compile("[a-zA-Z ñ á é í ó ú]{1,20}$");
+         Matcher eat = cat.matcher(nombre);
+         Matcher pat = cat.matcher(ape_pat);
+         Matcher mat = cat.matcher(ape_mat);
+        if (nombre.equals("")) {
+            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo nombre se encuentra vacio", null);
+            FacesContext.getCurrentInstance().addMessage(null, fm);
+        }else if(!eat.matches()){
+            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo nombre no puede contener numeros o caracteres especiales", null);
+            FacesContext.getCurrentInstance().addMessage(null, fm);
+        } else if (ape_pat.equals("")) {
+            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo apellido paterno se encuentra vacio", null);
+            FacesContext.getCurrentInstance().addMessage(null, fm);
+        } else if(!pat.matches()){
+            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo apellido paterno no puede contener numeros o caracteres especiales", null);
+            FacesContext.getCurrentInstance().addMessage(null, fm);
+        }else if (ape_mat.equals("")) {
+            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo apellido materno se encuentra vacio", null);
+            FacesContext.getCurrentInstance().addMessage(null, fm);
+        }else if(!mat.matches()){
+            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo apellido materno no puede contener numeros o caracteres especiales", null);
+            FacesContext.getCurrentInstance().addMessage(null, fm);
+        } else if (usuario.equals("")) {
+            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo usuario se encuentra vacio", null);
+            FacesContext.getCurrentInstance().addMessage(null, fm);
+        } else if (password.equals("")) {
+            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo password se encuentra vacio", null);
+            FacesContext.getCurrentInstance().addMessage(null, fm);
+        }else if (tipo.equals("tipo")) {
+            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Debe seleccionar el tipo de usuario", null);
+            FacesContext.getCurrentInstance().addMessage(null, fm);
+        } else{ 
+             FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario editado correctamente", null);
+            FacesContext.getCurrentInstance().addMessage(null, fm);
+            new UsuariosValidations().Editar(Integer.parseInt(id), nombre, ape_pat, ape_mat, usuario, password, tipo);
+        }
+        
+     
        
     }   
     

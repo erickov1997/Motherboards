@@ -7,6 +7,8 @@ package itt.ittol.inventarios;
 
 import com.ittol.almacen.AlmacenValidations;
 import java.io.Serializable;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -58,9 +60,26 @@ public class Entradas implements Serializable {
     }
     
      public void agrEntrada() throws ClassNotFoundException {
+          Pattern pat = Pattern.compile("([0-9]){1,3}$");
+            Matcher mat = pat.matcher(String.valueOf(cantidad));
+          if(String.valueOf(cantidad).equals("")){
+               FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_ERROR,"El campo cantidad se encuentra vacio", null);
+               FacesContext.getCurrentInstance().addMessage(null, fm);
+           }
+           else if(!mat.matches()){
+               FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_ERROR,"El campo cantidad solo puede contener numeros y como un maximo de 3 digitos", null);
+               FacesContext.getCurrentInstance().addMessage(null, fm);
+           }else if(fecha.equals("")){
+               FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_ERROR,"El campo fecha se encuentra vacio", null);
+               FacesContext.getCurrentInstance().addMessage(null, fm);
+           }else{
+               FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_INFO,"Entrada registrado correctamente",null);
+               FacesContext.getCurrentInstance().addMessage(null, fm);
+                int stock= Integer.parseInt(cantidad);
+                new InventariosValidations().InsertEntrada(id_prod, fecha, stock);
+           }
         
-        int stock= Integer.parseInt(cantidad);
-        new InventariosValidations().InsertEntrada(id_prod, fecha, stock);
+       
             
     } 
      

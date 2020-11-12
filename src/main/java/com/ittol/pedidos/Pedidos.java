@@ -8,7 +8,11 @@ package com.ittol.pedidos;
 import com.ittol.productos.ProductosValidations;
 import java.io.Serializable;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 /**
@@ -20,7 +24,7 @@ import javax.inject.Named;
 public class Pedidos implements Serializable{
    private int id_pedido;
    private String id_prod;
-   private int cantidad;
+   private String cantidad;
    private double total;
    private String status;
    String fecha;
@@ -43,13 +47,23 @@ public class Pedidos implements Serializable{
         this.id_prod = id_prod;
     }
 
-    public int getCantidad() {
+   /* public int getCantidad() {
         return cantidad;
     }
 
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
+    }*/
+
+    public String getCantidad() {
+        return cantidad;
     }
+
+    public void setCantidad(String cantidad) {
+        this.cantidad = cantidad;
+    }
+    
+    
 
     public double getTotal() {
         return total;
@@ -86,8 +100,25 @@ public class Pedidos implements Serializable{
     
    
      public void agrPedido() throws ClassNotFoundException {
+            Pattern pat = Pattern.compile("([0-9]){1,3}$");
+            Matcher mat = pat.matcher(String.valueOf(cantidad));
+          if(String.valueOf(cantidad).equals("")){
+               FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_ERROR,"El campo cantidad se encuentra vacio", null);
+               FacesContext.getCurrentInstance().addMessage(null, fm);
+           }
+           else if(!mat.matches()){
+               FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_ERROR,"El campo cantidad solo puede contener numeros y como un maximo de 3 digitos", null);
+               FacesContext.getCurrentInstance().addMessage(null, fm);
+           }else if(fecha.equals("")){
+               FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_ERROR,"El campo fecha se encuentra vacio", null);
+               FacesContext.getCurrentInstance().addMessage(null, fm);
+           }else{
+               FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_INFO,"Pedido registrado correctamente",null);
+               FacesContext.getCurrentInstance().addMessage(null, fm);
+                 new PedidosValidations().InsertPedido(id_prod,Integer.parseInt(cantidad),fecha);
+           }
           
-             new PedidosValidations().InsertPedido(id_prod,cantidad,fecha);
+           
             
     }  
      

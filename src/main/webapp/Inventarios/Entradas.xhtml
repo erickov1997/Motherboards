@@ -52,10 +52,12 @@
             </div>
             <div class="contenido">
                 <h1>Registrar entrada</h1>
+                <h:messages errorStyle="color:red;width:auto;text-align:center;background:#f8d7da;border-radius:5px; box-shadow: 0 1px 3px rgba(0,0,0,.5);padding:10px;margin-left:25%;margin-right:25%;margin-top:20px"
+                            infoStyle="color:green;width:auto;text-align:center;background:#d4edda;border-radius:5px; box-shadow: 0 1px 3px rgba(0,0,0,.5);padding:10px;margin-left:25%;margin-right:25%;margin-top:20px"/>
                   <h:form class="fdatos">
-                      <h:messages errorStyle="color:red"/>
+                     
                     <div class="datos_prov">  
-                        <h:selectOneMenu id="almc" class="form-control dato" value="#{appEntradas.id_prod}">
+                        <h:selectOneMenu id="almc" class="form-control dato" value="#{appEntradas.id_prod}" required="true" requiredMessage="Debe seleccionar un producto">
                            <f:selectItem itemLabel="---Producto----" />
                            <f:selectItems  value="#{appInv.listidProd}"/>
                            
