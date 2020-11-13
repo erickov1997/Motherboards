@@ -49,7 +49,7 @@
             <div class="contenido">
                 <h1>Editar Almacen</h1>
                 <h:form class="fdatos">
-                    <h:selectOneMenu id="almc" class="form-control dato" value="#{appAlmacen.id_alc}">
+                    <h:selectOneMenu id="almc" class="form-control dato" value="#{appAlmacen.id_alc}" required="true" requiredMessage="Debe seleccionar un almacen" >
                            <f:selectItem itemLabel="---Almacen----" />
                            <f:selectItems  value="#{appProduct.listidAlmacen}"/>
                            

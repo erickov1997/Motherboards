@@ -25,6 +25,15 @@ public class InventariosValidations {
         return id;
     }
      
+     public List ConsultIdProd(String id_prod) throws ClassNotFoundException{
+        //DBHandler handler = new DBHandler();
+        
+        query.getConnection();
+        List id = query.IDProd("SELECT id_prod FROM \"Productos\" WHERE id_prod ='"+id_prod+"'");
+        System.out.println("id_prod: "+id);
+        return id;
+    } 
+     
      public void InsertEntrada(String id_prod,String fecha_ent,int cantidad) throws ClassNotFoundException{
         query.getConnection();
         query.executeUpdate("INSERT INTO entradas(id_prod,fech_ent,cantidad) "+ "VALUES('"+id_prod+"','"+fecha_ent+"','"+cantidad+"')");
@@ -70,13 +79,4 @@ public class InventariosValidations {
      
     
      
-     public static void main(String[] args) throws ClassNotFoundException {
-      // InventariosValidations obj = new InventariosValidations();
-        //obj.InsertEntrada("hjg", "2020/10/12", 3);
-      // obj.InsertSalida("gf67w", "2020/10/12", 10);
-         //System.out.println("stock"+obj.GetStockProd("gf67w"));
-     // obj.GetStockProd("gf67w");
-        //obj.stock("hjg");
-       
-    }
 }

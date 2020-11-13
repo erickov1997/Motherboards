@@ -61,6 +61,7 @@ public class querys {
                      l.add(rs.getString("id_prod"));
                    
                 }
+                
             } catch (SQLException ex) {
                 Logger.getLogger(DBHandler.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -113,3 +114,5 @@ public class querys {
     }
     
 }
+    
+

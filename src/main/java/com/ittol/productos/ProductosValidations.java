@@ -6,6 +6,7 @@
 package com.ittol.productos;
 
 import com.ittol.beans.DBHandler;
+import itt.ittol.inventarios.querys;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;

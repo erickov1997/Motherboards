@@ -7,6 +7,7 @@ package com.ittol.productos;
 
 import com.ittol.almacen.Almacen;
 import com.ittol.almacen.AlmacenValidations;
+import itt.ittol.inventarios.InventariosValidations;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -166,6 +167,7 @@ public class Productos implements Serializable {
     }   
         
         public void agrProducto() throws ClassNotFoundException {
+           InventariosValidations prod=  new InventariosValidations();
             
             Pattern cat = Pattern.compile("[a-zA-Z ñ 0-9 á é í ó ú]*$");
             Matcher eat = cat.matcher(id_prod);
@@ -177,6 +179,10 @@ public class Productos implements Serializable {
             if (id_prod.equals("")) {
                 FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo codigo se encuentra vacio", null);
                 FacesContext.getCurrentInstance().addMessage(null, fm);
+            }else if(id_prod.equals(prod.ConsultIdProd("gf67u").get(0))){
+                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El codigo ya existe", null);
+                FacesContext.getCurrentInstance().addMessage(null, fm);
+            
             } else if (!eat.matches()) {
                 FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo codigo solo pude conetener letras conformdas en el abecedario o numeros [0-9]", null);
                 FacesContext.getCurrentInstance().addMessage(null, fm);

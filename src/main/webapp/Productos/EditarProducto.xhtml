@@ -49,7 +49,7 @@
                 
                  <h:form class="fdatos">
                     <div class="datos_prov">
-                        <h:selectOneMenu id="almc" class="form-control dato" value="#{appProduct.id_prod}">
+                        <h:selectOneMenu id="almc" class="form-control dato" value="#{appProduct.id_prod}" required="true" requiredMessage="Debe seleccionar un producto">
                            <f:selectItem itemLabel="---Producto----" />
                            <f:selectItems  value="#{appInv.listidProd}"/>    
                        </h:selectOneMenu>
