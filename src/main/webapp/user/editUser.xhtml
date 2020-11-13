@@ -42,7 +42,7 @@
             <div class="contenido">
                 <h1>Editar usuario</h1>
                 <h:form class="fdatos">
-                    <h:selectOneMenu id="almc" class="form-control dato" value="#{appUser.id}">
+                    <h:selectOneMenu id="almc" class="form-control dato" value="#{appUser.id}" required="true" requiredMessage="Debe seleccionar un usuario" >
                            <f:selectItem itemLabel="---Seleccione usuario----" />
                            <f:selectItems  value="#{appUser.listidUsers}"/>
                            

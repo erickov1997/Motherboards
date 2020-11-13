@@ -85,6 +85,9 @@ public class Salidas implements Serializable {
                new InventariosValidations().InsertSalida(id_prod, fecha,cantid );
                FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_INFO,"Salida de productos registrada correctamente",null);
                FacesContext.getCurrentInstance().addMessage(null, fm);
+                id_prod="";
+                cantidad="";
+                fecha="";
                return "Salidas.xhtml";
           }
            

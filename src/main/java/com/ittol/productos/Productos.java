@@ -176,14 +176,16 @@ public class Productos implements Serializable {
             Pattern p = Pattern.compile( "^[1-9]\\d*(\\.\\d+)?$");
             Matcher prec = p.matcher(prec_uni); 
             
+            //String cprod=String.valueOf(prod.ConsultIdProd(id_prod).get(0));
+           
             if (id_prod.equals("")) {
                 FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo codigo se encuentra vacio", null);
                 FacesContext.getCurrentInstance().addMessage(null, fm);
-            }else if(id_prod.equals(prod.ConsultIdProd("gf67u").get(0))){
+            }/*else if(cprod.equals(id_prod)){
                 FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El codigo ya existe", null);
                 FacesContext.getCurrentInstance().addMessage(null, fm);
             
-            } else if (!eat.matches()) {
+            }*/ else if (!eat.matches()) {
                 FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo codigo solo pude conetener letras conformdas en el abecedario o numeros [0-9]", null);
                 FacesContext.getCurrentInstance().addMessage(null, fm);
             } else if (id_prod.length()!= 5) {
@@ -227,6 +229,14 @@ public class Productos implements Serializable {
                 double precio = Double.parseDouble(prec_uni);
                 int almc = Integer.parseInt(almacen);
                 new ProductosValidations().InsertProduct(id_prod, nombre, tipo, fam_proc, mem_int, tipo_meoria, precio, almc);
+                id_prod="";
+                nombre="";
+                tipo="---Tipo---";
+                fam_proc="---Familia de Procesador---";
+                mem_int="---Memoria Interna---";
+                tipo_meoria="---Tipo de Memoria---";
+                almacen="---Almacen----";
+                prec_uni="";
             }
 
 

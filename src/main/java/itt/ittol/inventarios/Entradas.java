@@ -77,6 +77,9 @@ public class Entradas implements Serializable {
                FacesContext.getCurrentInstance().addMessage(null, fm);
                 int stock= Integer.parseInt(cantidad);
                 new InventariosValidations().InsertEntrada(id_prod, fecha, stock);
+                 id_prod="";
+                cantidad="";
+                fecha="";
            }
         
        

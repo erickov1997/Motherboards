@@ -128,6 +128,9 @@ public class Almacen implements Serializable {
                FacesContext.getCurrentInstance().addMessage(null, fm);
                
                new AlmacenValidations().InsertAlmacen(nombre, descripcion, direccion);
+               nombre="";
+               descripcion="";
+               direccion="";
                System.out.println(nombre + descripcion + direccion);
            }
            
