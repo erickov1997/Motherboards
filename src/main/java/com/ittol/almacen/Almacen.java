@@ -101,6 +101,9 @@ public class Almacen implements Serializable {
             Matcher eat = cat.matcher(nombre);
             Matcher van = cat.matcher(descripcion);
             
+            Pattern des = Pattern.compile("[a-zA-Z ñ 0-9 á é í ó ú #]{1,20}$");
+            Matcher dir = des.matcher(direccion);
+            
            if (nombre.equals("")) {
                FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_ERROR,"El campo nombre se encuentra vacio", null);
                FacesContext.getCurrentInstance().addMessage(null, fm);
@@ -117,7 +120,10 @@ public class Almacen implements Serializable {
        }else if(direccion.equals("")){
                FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_ERROR,"El direccion se encuentra vacio", null);
                FacesContext.getCurrentInstance().addMessage(null, fm);
-           }else{
+           }else if(!dir.matches()){
+                FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_ERROR,"El campo direccion no puede contener caracteres especiales solamente (#) o la longitud supera los 20 caracteres", null);
+                FacesContext.getCurrentInstance().addMessage(null, fm);
+       }else{
                FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_INFO,"Almacen registrado correctamente",null);
                FacesContext.getCurrentInstance().addMessage(null, fm);
                
@@ -171,6 +177,9 @@ public class Almacen implements Serializable {
             Matcher eat = cat.matcher(nombre);
             Matcher van = cat.matcher(descripcion);
             
+            Pattern des = Pattern.compile("[a-zA-Z ñ 0-9 á é í ó ú #]{1,20}$");
+            Matcher dir = des.matcher(direccion);
+            
            if (nombre.equals("")) {
                FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_ERROR,"El campo nombre se encuentra vacio", null);
                FacesContext.getCurrentInstance().addMessage(null, fm);
@@ -187,7 +196,10 @@ public class Almacen implements Serializable {
        }else if(direccion.equals("")){
                FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_ERROR,"El direccion se encuentra vacio", null);
                FacesContext.getCurrentInstance().addMessage(null, fm);
-           }else{
+           }else if(!dir.matches()){
+                FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_ERROR,"El campo direccion no puede contener caracteres especiales solamente (#) o la longitud supera los 20 caracteres", null);
+                FacesContext.getCurrentInstance().addMessage(null, fm);
+       }else{
                 FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_INFO,"Almacen Editado correctamente",null);
                FacesContext.getCurrentInstance().addMessage(null, fm);
                 new AlmacenValidations().Editar(id_alc,nombre,descripcion,direccion);

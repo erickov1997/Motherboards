@@ -171,7 +171,7 @@ public class Productos implements Serializable {
             Matcher eat = cat.matcher(id_prod);
             Matcher nom = cat.matcher(nombre);
             
-            Pattern p = Pattern.compile( "[0-9]");
+            Pattern p = Pattern.compile( "^[1-9]\\d*(\\.\\d+)?$");
             Matcher prec = p.matcher(prec_uni); 
             
             if (id_prod.equals("")) {
@@ -212,10 +212,10 @@ public class Productos implements Serializable {
             else if(prec_uni.equals("")){
                 FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo precio unitario se encuentra vacio", null);
                 FacesContext.getCurrentInstance().addMessage(null, fm);
-            }/*else if(!prec.matches()){
-                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo precio unitario solo puede contener numeros", null);
+            }else if(!prec.matches()){
+                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo precio unitario solo puede contener numeros enteros o decimales", null);
                 FacesContext.getCurrentInstance().addMessage(null, fm);
-            }*/else {
+            }else {
                 FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_INFO, "Producto registrado correctamente", null);
                 FacesContext.getCurrentInstance().addMessage(null, fm);
                 double precio = Double.parseDouble(prec_uni);
@@ -228,8 +228,12 @@ public class Productos implements Serializable {
     }
         
     public void EProducto() throws ClassNotFoundException {
-        Pattern cat = Pattern.compile("[a-zA-Z ñ 0-9 á é í ó ú]*$");
+          Pattern cat = Pattern.compile("[a-zA-Z ñ 0-9 á é í ó ú]*$");
             Matcher nom = cat.matcher(nombre);
+            
+         Pattern p = Pattern.compile( "^[1-9]\\d*(\\.\\d+)?$");
+         Matcher prec = p.matcher(prec_uni); 
+         
         if (nombre.equals("")) {
             FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo nombre se encuentra vacio", null);
             FacesContext.getCurrentInstance().addMessage(null, fm);
@@ -241,6 +245,9 @@ public class Productos implements Serializable {
             FacesContext.getCurrentInstance().addMessage(null, fm);
         }else if(prec_uni.equals("")){
                 FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo precio unitario se encuentra vacio", null);
+                FacesContext.getCurrentInstance().addMessage(null, fm);
+            }else if(!prec.matches()){
+                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo precio unitario solo puede contener numeros enteros o decimales", null);
                 FacesContext.getCurrentInstance().addMessage(null, fm);
             } else {
             FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_INFO, "Producto Editado correctamente", null);
