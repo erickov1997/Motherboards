@@ -18,7 +18,7 @@
             <div class="listas">
                  <ul class="nav">
                      <h:form class="navf">
-                         <li><h:commandLink action="/Almacen/Almacen.xhtml" class="navli">Almacen</h:commandLink> </li>
+                         <li><h:commandLink action="#{appProduct.linkalmacen()}" class="navli">Almacen</h:commandLink> </li>
                          <li><h:commandLink action="Productos/Productos.xhtml" class="navli">Productos</h:commandLink></li>
                          <li><h:commandLink action="/Pedidos/AgrPedido.xhtml" class="navli">Pedido</h:commandLink> </li>
                           <li><h:commandLink action="/Inventarios/Inventario.xhtml" class="navli">Inventario</h:commandLink> </li>
@@ -41,8 +41,7 @@
                     
                     <h:form >
                         <li><h:commandLink action="Productos" class="navli">Agregar</h:commandLink> </li>
-                         <li><h:commandLink action="EditarProducto" class="navli">Editar</h:commandLink> </li>
-                        <li><h:commandLink action="ProductosList" class="navli">Lista de Productos</h:commandLink> </li>
+                        <li><h:commandLink action="#{appProduct.process()}" class="navli">Lista de Productos</h:commandLink> </li>
                     </h:form>
                 </ul>
                 

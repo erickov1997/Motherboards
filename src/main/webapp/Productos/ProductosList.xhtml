@@ -16,7 +16,7 @@
             <div class="listas">
                  <ul class="nav">
                  <h:form class="navf">
-                       <li><h:commandLink action="/Almacen/Almacen.xhtml" class="navli">Almacen</h:commandLink> </li>
+                       <li><h:commandLink action="#{appProduct.linkalmacen()}" class="navli">Almacen</h:commandLink> </li>
                          <li><h:commandLink action="Productos/Productos.xhtml" class="navli">Productos</h:commandLink></li>
                          <li><h:commandLink action="/Pedidos/AgrPedido.xhtml" class="navli">Pedido</h:commandLink> </li>
                           <li><h:commandLink action="/Inventarios/Inventario.xhtml" class="navli">Inventario</h:commandLink> </li>
@@ -37,8 +37,7 @@
             <div class="menu-lateral">
                 <ul class="menu-prov">
                     <h:form >
-                        <li><h:commandLink action="Productos" class="navli">Agregar</h:commandLink> </li>
-                         <li><h:commandLink action="EditarProducto" class="navli">Editar</h:commandLink> </li>
+                        <li><h:commandLink action="Productos" class="navli">Agregar</h:commandLink> </li>                       
                          <li><h:commandLink action="#{appProduct.process()}" class="navli">Lista de Productos</h:commandLink> </li>
                     </h:form>
                 </ul>
@@ -46,6 +45,8 @@
             </div>
             <div class="contenido ">
                 <h1>Lista de  Producto</h1>
+                <h:messages errorStyle="color:red;width:auto;text-align:center;background:#f8d7da;border-radius:5px; box-shadow: 0 1px 3px rgba(0,0,0,.5);padding:10px;margin-left:25%;margin-right:25%;margin-top:20px"
+                            infoStyle="color:green;width:auto;text-align:center;background:#d4edda;border-radius:5px; box-shadow: 0 1px 3px rgba(0,0,0,.5);padding:10px;margin-left:25%;margin-right:25%;margin-top:20px"/>
                 <div class="table-responsive-lg tabla">
                      <h:dataTable   class="table table-striped table-bordered " value="#{appProduct.listProductos}" var="prod">
                     <h:column>    				
@@ -93,6 +94,15 @@
                         </f:facet>
                         <h:outputLabel value="#{prod.almacen}"/>
                     </h:column>
+                     <h:column>
+                        <f:facet name="header">
+                            <h:outputLabel value="Editar"/>
+                        </f:facet>
+                         <h:form>
+                              <h:commandButton class="btn btn-primary agrProd" value="Editar" action="#{appProduct.getproduct(prod.id_prod)}"/>
+                         </h:form>
+                       
+                    </h:column>    
                         
                     
                 </h:dataTable>

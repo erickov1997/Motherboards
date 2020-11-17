@@ -118,7 +118,7 @@ public class Almacen implements Serializable {
                 FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_ERROR,"El campo descripcion no puede contener caracteres especiales o la longitud supera los 20 caracteres", null);
                 FacesContext.getCurrentInstance().addMessage(null, fm);
        }else if(direccion.equals("")){
-               FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_ERROR,"El direccion se encuentra vacio", null);
+               FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_ERROR,"El campo direccion se encuentra vacio", null);
                FacesContext.getCurrentInstance().addMessage(null, fm);
            }else if(!dir.matches()){
                 FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_ERROR,"El campo direccion no puede contener caracteres especiales solamente (#) o la longitud supera los 20 caracteres", null);
@@ -131,7 +131,7 @@ public class Almacen implements Serializable {
                nombre="";
                descripcion="";
                direccion="";
-               System.out.println(nombre + descripcion + direccion);
+               //System.out.println(nombre + descripcion + direccion);
            }
            
             
@@ -143,9 +143,9 @@ public class Almacen implements Serializable {
         listAlmc= new AlmacenValidations().listaAlmacenes();
          
         
-         for (int i = 0; i < listAlmc.size(); i++) {
+         /*for (int i = 0; i < listAlmc.size(); i++) {
               System.out.println("alm: "+listAlmc.get(i).getNombre());
-         }
+         }*/
         
          return listAlmc;
          
@@ -160,20 +160,10 @@ public class Almacen implements Serializable {
     }
        
        
-     public List<Almacen> EditAlmacen() throws ClassNotFoundException{
-       
-          almacenEdit= new AlmacenValidations().AlmacenGetId(id_alc);
-            
-         this.nombre= almacenEdit.get(0).getNombre();
-         this.descripcion= almacenEdit.get(0).descripcion;
-         this.direccion= almacenEdit.get(0).direccion;
-        
-         return  almacenEdit;
-         
-    }     
     
-     public void process4() throws ClassNotFoundException {
-         Pattern pat = Pattern.compile("^([0-9])*$");
+     public String process4() throws ClassNotFoundException {
+               
+            Pattern pat = Pattern.compile("^([0-9])*$");
             Matcher mat = pat.matcher(descripcion); 
             
             Pattern cat = Pattern.compile("[a-zA-Z ñ 0-9 á é í ó ú]{1,20}$");
@@ -197,29 +187,54 @@ public class Almacen implements Serializable {
                 FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_ERROR,"El campo descripcion no puede contener caracteres especiales o la longitud supera los 20 caracteres", null);
                 FacesContext.getCurrentInstance().addMessage(null, fm);
        }else if(direccion.equals("")){
-               FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_ERROR,"El direccion se encuentra vacio", null);
+               FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_ERROR,"El campo direccion se encuentra vacio", null);
                FacesContext.getCurrentInstance().addMessage(null, fm);
            }else if(!dir.matches()){
                 FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_ERROR,"El campo direccion no puede contener caracteres especiales solamente (#) o la longitud supera los 20 caracteres", null);
                 FacesContext.getCurrentInstance().addMessage(null, fm);
        }else{
                 FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_INFO,"Almacen Editado correctamente",null);
-               FacesContext.getCurrentInstance().addMessage(null, fm);
+                FacesContext.getCurrentInstance().addMessage(null, fm);
                 new AlmacenValidations().Editar(id_alc,nombre,descripcion,direccion);
+                nombre="";
+                descripcion="";
+                direccion="";
+                //System.out.println("almacen editadi: "+id_alc);
+                return"AlmacenList.xhtml";
        }
+        return"AlmacenEdit.xhtml";
        
     }     
      
     public void Ealmacen() throws ClassNotFoundException {
        new AlmacenValidations().Editar(id_alc,nombre,descripcion,direccion);
        
-    }    
-       public String process3() throws ClassNotFoundException {
-       EditAlmacen();
-       return "AlmacenEdit.xhtml";
+    }
+
+     public List<Almacen> EditAlmacen(int almacen) throws ClassNotFoundException{
        
-    }   
-      
+         almacenEdit= new AlmacenValidations().AlmacenGetId(almacen);
+            
+         this.nombre= almacenEdit.get(0).getNombre();
+         this.descripcion= almacenEdit.get(0).descripcion;
+         this.direccion= almacenEdit.get(0).direccion;
+        
+         return  almacenEdit;
+         
+    }     
+       
+    public String getalmacen(int id) throws ClassNotFoundException {
+        this.id_alc=id;
+        System.out.println("almacen ob enido " + id);
+        //int id_alm = Integer.parseInt(id);
+        EditAlmacen(id);
+        return "AlmacenEdit.xhtml";
+    }
+    
+    public String almcenLink(){
+     return "Almacen.xhtml";
+    }
+
        public static void main(String[] args) throws ClassNotFoundException {
         /*Almacen obj = new Almacen();
         obj.ConsultAlmacen();*/

@@ -16,7 +16,7 @@
             <div class="listas">
                  <ul class="nav">
                      <h:form class="navf">
-                        <li><h:commandLink action="Almacen/Almacen.xhtml" class="navli">Almacen</h:commandLink> </li>
+                        <li><h:commandLink action="Almacen.xhtml" class="navli">Almacen</h:commandLink> </li>
                          <li><h:commandLink action="/Productos/Productos.xhtml" class="navli">Productos</h:commandLink></li>
                          <li><h:commandLink action="/Pedidos/AgrPedido.xhtml" class="navli">Pedido</h:commandLink> </li>
                           <li><h:commandLink action="/Inventarios/Inventario.xhtml" class="navli">Inventario</h:commandLink> </li>
@@ -38,27 +38,16 @@
         <div class="contenedor">
             <div class="menu-lateral">
                 <ul class="menu-prov">
-                     <h:form>
-                      <li><h:commandLink action="Almacen" class="navli">Registrar</h:commandLink> </li>
-                        <li><h:commandLink action="AlmacenEdit" class="navli">Editar</h:commandLink> </li>
+                     <h:form>                  
                         <li><h:commandLink action="AlmacenList" class="navli">Lista de Almacenes</h:commandLink> </li>
                     </h:form>
                 </ul>
                 
             </div>
             <div class="contenido">
+                
                 <h1>Editar Almacen</h1>
-                <h:form class="fdatos">
-                    <h:selectOneMenu id="almc" class="form-control dato" value="#{appAlmacen.id_alc}" required="true" requiredMessage="Debe seleccionar un almacen" >
-                           <f:selectItem itemLabel="---Almacen----" />
-                           <f:selectItems  value="#{appProduct.listidAlmacen}"/>
-                           
-                       </h:selectOneMenu>
-                    <div class="botonagr">
-                        <h:commandButton class="btn btn-primary agrProd" value="Buscar" action="#{appAlmacen.process3()}"></h:commandButton>
-                    </div>
-                </h:form>
-                <h:messages errorStyle="color:red;width:auto;text-align:center;background:#f8d7da;border-radius:5px; box-shadow: 0 1px 3px rgba(0,0,0,.5);padding:10px;margin-left:25%;margin-right:25%;margin-top:20px"
+               <h:messages errorStyle="color:red;width:auto;text-align:center;background:#f8d7da;border-radius:5px; box-shadow: 0 1px 3px rgba(0,0,0,.5);padding:10px;margin-left:25%;margin-right:25%;margin-top:20px"
                             infoStyle="color:green;width:auto;text-align:center;background:#d4edda;border-radius:5px; box-shadow: 0 1px 3px rgba(0,0,0,.5);padding:10px;margin-left:25%;margin-right:25%;margin-top:20px"/>
                 <h:form class="fdatos">
                    

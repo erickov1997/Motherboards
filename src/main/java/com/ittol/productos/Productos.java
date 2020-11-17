@@ -243,7 +243,7 @@ public class Productos implements Serializable {
             
     }
         
-    public void EProducto() throws ClassNotFoundException {
+    public String EProducto() throws ClassNotFoundException {
           Pattern cat = Pattern.compile("[a-zA-Z ñ 0-9 á é í ó ú]*$");
             Matcher nom = cat.matcher(nombre);
             
@@ -270,45 +270,19 @@ public class Productos implements Serializable {
                 FacesContext.getCurrentInstance().addMessage(null, fm);
             double precio = Double.parseDouble(prec_uni);
             new ProductosValidations().Editar(id_prod, nombre, tipo, fam_proc, mem_int, tipo_meoria, precio);
+                id_prod="";
+                nombre="";
+                tipo="---Tipo---";
+                fam_proc="---Familia de Procesador---";
+                mem_int="---Memoria Interna---";
+                tipo_meoria="---Tipo de Memoria---";             
+                prec_uni="";
+                return "ProductosList.xhtml";
         }
+        return "EditarProducto.xhtml";
 
         
-        /* Pattern cat = Pattern.compile("[a-zA-Z ñ 0-9 á é í ó ú]*$");
-            Matcher nom = cat.matcher(nombre);
-            
-            Pattern p = Pattern.compile( "[0-9]");
-            Matcher prec = p.matcher(prec_uni); 
-        
-        
-        if(nombre.equals("")){
-                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo nombre se encuentra vacio", null);
-                FacesContext.getCurrentInstance().addMessage(null, fm);
-            }else if (!nom.matches()) {
-                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo nombre no puede contener caracteres especiales o la longitud supera los 20 caracteres", null);
-                FacesContext.getCurrentInstance().addMessage(null, fm);
-            } else if(nombre.length()>30){
-                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo nombre no puede contener mas de 30 caracteres", null);
-                FacesContext.getCurrentInstance().addMessage(null, fm);
-            }else if (tipo.equals("---Tipo---")) {
-                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Debe seleccionar un tipo", null);
-                FacesContext.getCurrentInstance().addMessage(null, fm);
-            }else if (fam_proc.equals("---Familia de Procesador---")) {
-                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Debe seleccionar Familia de Procesador", null);
-                FacesContext.getCurrentInstance().addMessage(null, fm);
-            }else if (mem_int.equals("---Memoria Interna---")) {
-                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Debe seleccionar Memoria Interna", null);
-                FacesContext.getCurrentInstance().addMessage(null, fm);
-            }else if (tipo_meoria.equals("---Tipo de Memoria---")) {
-                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Debe seleccionar Tipo de Memoria", null);
-                FacesContext.getCurrentInstance().addMessage(null, fm);
-            }else{
-                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_INFO, "Producto editado correctamente", null);
-                FacesContext.getCurrentInstance().addMessage(null, fm);
-                double precio = Double.parseDouble(prec_uni);             
-                new ProductosValidations().Editar(id_prod,nombre,tipo,fam_proc,mem_int,tipo_meoria,precio);
-            }
-           
-           */
+       
             
     }    
         
@@ -318,9 +292,9 @@ public class Productos implements Serializable {
          return  listProductos;
          
     }   
-    public List<Productos> EditProducto() throws ClassNotFoundException{
+    public List<Productos> EditProducto(String codigo) throws ClassNotFoundException{
        
-          productoEdit= new ProductosValidations().ProductoEdit(id_prod);
+          productoEdit= new ProductosValidations().ProductoEdit(codigo);
             
          this.nombre= productoEdit.get(0).getNombre();
          this.tipo= productoEdit.get(0).tipo;
@@ -336,11 +310,11 @@ public class Productos implements Serializable {
          
     }     
        
-       public String process3() throws ClassNotFoundException {
+      /* public String process3() throws ClassNotFoundException {
        EditProducto();
        return "EditarProducto.xhtml";
        
-    } 
+    } */
    
      public String process2() throws ClassNotFoundException {
          String id;
@@ -360,6 +334,21 @@ public class Productos implements Serializable {
        
         
     } 
+       
+     public String getproduct(String id) throws ClassNotFoundException{
+         this.id_prod=id;
+         EditProducto(id);
+         return "EditarProducto.xhtml";
+     
+     }  
+       
+    public String linkalmacen(){
+        Almacen almacen= new Almacen();
+        almacen.setNombre("");
+        almacen.setDescripcion("");
+        almacen.setDireccion("");
+        return "/Almacen/Almacen.xhtml";
+    }   
        
        
     

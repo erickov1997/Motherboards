@@ -26,7 +26,7 @@ public class AlmacenValidations {
         DBHandler handler = new DBHandler();
         handler.getConnection();
         List lst = handler.AlmacenList("SELECT * FROM almacenes");
-        System.out.println("almacenlist: "+lst);
+        //System.out.println("almacenlist: "+lst);
         return lst;
     }
      
@@ -37,7 +37,7 @@ public class AlmacenValidations {
         handler.getConnection();
         //List l = handler.AlmacenList("SELECT nombre FROM almacenes");
         listAlmc = handler.AlmacenList("SELECT nombre FROM almacenes");
-        System.out.println("l: "+listAlmc);
+        //System.out.println("l: "+listAlmc);
         return listAlmc;
     }
 
@@ -46,7 +46,7 @@ public class AlmacenValidations {
         DBHandler handler = new DBHandler();
         handler.getConnection();
         List id = handler.IDQuery("SELECT id_alc FROM almacenes");
-        System.out.println("id: "+id);
+        //System.out.println("id: "+id);
         return id;
     }
       
@@ -55,7 +55,7 @@ public class AlmacenValidations {
         DBHandler handler = new DBHandler();
         handler.getConnection();
         List lst = handler.AlmacenEdit("SELECT * FROM almacenes WHERE id_alc='"+id_alc+"'");
-        System.out.println("Almacen list: "+lst);
+        //System.out.println("Almacen list: "+lst);
         return lst;
     } 
      

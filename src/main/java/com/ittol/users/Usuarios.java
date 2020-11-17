@@ -114,33 +114,56 @@ public class Usuarios implements Serializable{
     }
     
     public void agrUser() throws ClassNotFoundException {
-         Pattern cat = Pattern.compile("[a-zA-Z ñ á é í ó ú]{1,20}$");
-         Matcher eat = cat.matcher(nombre);
-         Matcher pat = cat.matcher(ape_pat);
-         Matcher mat = cat.matcher(ape_mat);
+        //Pattern esp = Pattern.compile("^[a-zA-Z ñ á é í ó ú]{1,10}?\\s?[a-zA-Z ñ á é í ó ú]{1,10}$");
+         Pattern esp = Pattern.compile("^[a-zA-Z-nñáéíóú]+\\s?[a-zA-Z-nñáéíóú]+\\s?[a-zA-Z-nñáéíóú]+$");
+         Matcher enom = esp.matcher(nombre);
+         Pattern apes = Pattern.compile("^[a-zA-Z-nñáéíóú]+\\s?[a-zA-Z-ñáéíóú]+$");
+         Matcher pat = apes.matcher(ape_pat);
+         Matcher mat = apes.matcher(ape_mat);
+         Pattern user = Pattern.compile("^\\w+$");
+         Matcher use = user.matcher(usuario);
+         Pattern con = Pattern.compile("^[a-zA-Z-nñáéíóú!¡#$%&{}=?¿\".+-]+$");
+         Matcher pass = con.matcher(password);
+         
+         
         if (nombre.equals("")) {
             FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo nombre se encuentra vacio", null);
             FacesContext.getCurrentInstance().addMessage(null, fm);
-        }else if(!eat.matches()){
-            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo nombre no puede contener numeros o caracteres especiales", null);
+        }/*else if(!eat.matches()){
+            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo nombre no puede contener numeros o caracteres especiales o mas de 3 espacios", null);
+            FacesContext.getCurrentInstance().addMessage(null, fm);
+        }*/else if(!enom.matches()){
+            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "No se puede ingresar mas de tres nombres y no se deben ingresar caracteres que no pertenezcan al alfabeto", null);
             FacesContext.getCurrentInstance().addMessage(null, fm);
         } else if (ape_pat.equals("")) {
             FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo apellido paterno se encuentra vacio", null);
             FacesContext.getCurrentInstance().addMessage(null, fm);
-        } else if(!pat.matches()){
-            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo apellido paterno no puede contener numeros o caracteres especiales", null);
+        }else if(!pat.matches()){
+            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "No se debe ingresar mas de un apellido paterno y  no se deben ingresar carecteres que no pertenezcan al alfabeto", null);
             FacesContext.getCurrentInstance().addMessage(null, fm);
         }else if (ape_mat.equals("")) {
             FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo apellido materno se encuentra vacio", null);
             FacesContext.getCurrentInstance().addMessage(null, fm);
         }else if(!mat.matches()){
-            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo apellido materno no puede contener numeros o caracteres especiales", null);
+            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "No se debe ingresar mas de un apellido materno y  no se deben ingresar carecteres que no pertenezcan al alfabeto", null);
             FacesContext.getCurrentInstance().addMessage(null, fm);
         } else if (usuario.equals("")) {
             FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo usuario se encuentra vacio", null);
             FacesContext.getCurrentInstance().addMessage(null, fm);
+        } else if (!use.matches()) {
+            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "no puede haber espacios en el campo usuario y solo puede contener letras del altabeto o numeros ", null);
+            FacesContext.getCurrentInstance().addMessage(null, fm);
+        }else if(usuario.length()>10){
+            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "La longitud del campo usuario no debe ser mayor a 10 caracteres", null);
+            FacesContext.getCurrentInstance().addMessage(null, fm);
         } else if (password.equals("")) {
             FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo password se encuentra vacio", null);
+            FacesContext.getCurrentInstance().addMessage(null, fm);
+        }else if (!pass.matches()) {
+            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "No debe haber espacios vacios en el campo password y solo se puede ingresar letras del alfabeto, numeros o los sig caracteres [áéíóú!¡#$%&{}=?¿\".+-]", null);
+            FacesContext.getCurrentInstance().addMessage(null, fm);
+        } else if (password.length()>20) {
+            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El password no pude contener mas de 20 caracteres", null);
             FacesContext.getCurrentInstance().addMessage(null, fm);
         }else if (tipo.equals("tipo")) {
             FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Debe seleccionar el tipo de usuario", null);

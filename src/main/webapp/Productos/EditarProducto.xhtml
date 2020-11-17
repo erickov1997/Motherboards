@@ -16,7 +16,7 @@
             <div class="listas">
                  <ul class="nav">
                  <h:form class="navf">
-                         <li><h:commandLink action="/Almacen/Almacen.xhtml" class="navli">Almacen</h:commandLink> </li>
+                         <li><h:commandLink action="#{appProduct.linkalmacen()}" class="navli">Almacen</h:commandLink> </li>
                          <li><h:commandLink action="Productos/Productos.xhtml" class="navli">Productos</h:commandLink></li>
                          <li><h:commandLink action="/Pedidos/AgrPedido.xhtml" class="navli">Pedido</h:commandLink> </li>
                           <li><h:commandLink action="/Inventarios/Inventario.xhtml" class="navli">Inventario</h:commandLink> </li>
@@ -36,10 +36,8 @@
         <div class="contenedor">
             <div class="menu-lateral">
                 <ul class="menu-prov">
-                   <h:form >
-                        <li><h:commandLink action="Productos" class="navli">Agregar</h:commandLink> </li>
-                         <li><h:commandLink action="EditarProducto" class="navli">Editar</h:commandLink> </li>
-                        <li><h:commandLink action="ProductosList" class="navli">Lista de Productos</h:commandLink> </li>
+                   <h:form >                       
+                        <li><h:commandLink action="#{appProduct.process()}" class="navli">Lista de Productos</h:commandLink> </li>
                     </h:form>
                 </ul>
                 
@@ -47,19 +45,7 @@
             <div class="contenido">
                 <h1>Editar Producto</h1>
                 
-                 <h:form class="fdatos">
-                    <div class="datos_prov">
-                        <h:selectOneMenu id="almc" class="form-control dato" value="#{appProduct.id_prod}" required="true" requiredMessage="Debe seleccionar un producto">
-                           <f:selectItem itemLabel="---Producto----" />
-                           <f:selectItems  value="#{appInv.listidProd}"/>    
-                       </h:selectOneMenu>
-                        <div class="botonagr">
-                        <h:commandButton class="btn btn-primary agrProd" value="Buscar" action="#{appProduct.process3()}"></h:commandButton>
-                    </div>
-                    </div>
-                  
-                   
-                </h:form>
+                 
                 <h:messages errorStyle="color:red;width:auto;text-align:center;background:#f8d7da;border-radius:5px; box-shadow: 0 1px 3px rgba(0,0,0,.5);padding:10px;margin-left:25%;margin-right:25%;margin-top:20px"
                             infoStyle="color:green;width:auto;text-align:center;background:#d4edda;border-radius:5px; box-shadow: 0 1px 3px rgba(0,0,0,.5);padding:10px;margin-left:25%;margin-right:25%;margin-top:20px"/>
                 <h:form class="fdatos">
