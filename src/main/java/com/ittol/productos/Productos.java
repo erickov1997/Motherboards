@@ -187,7 +187,7 @@ public class Productos implements Serializable {
                 FacesContext.getCurrentInstance().addMessage(null, fm);
             
             }*/ else if (!eat.matches()) {
-                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo codigo solo pude contener letras conformdas del abecedario [A-Z a-z] a excepcion de [ñ] o numeros [0-9] y sin espacios", null);
+                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo codigo solo pude contener letras conformadas del abecedario [A-Z a-z] a excepcion de [ñ] o numeros [0-9] y sin espacios", null);
                 FacesContext.getCurrentInstance().addMessage(null, fm);
             } else if (id_prod.length()!= 5) {
                 FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo codigo debe contener 5 caracteres", null);
@@ -196,7 +196,7 @@ public class Productos implements Serializable {
                 FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo nombre se encuentra vacio", null);
                 FacesContext.getCurrentInstance().addMessage(null, fm);
             }else if (!nom.matches()) {
-                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo nombre solo pude contener letras conformdas del abecedario [A-Z a-z] o [á é í ó ú] o numeros [0-9] ", null);
+                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo nombre solo pude contener letras conformadas del abecedario [A-Z a-z] o [á é í ó ú] o numeros [0-9] ", null);
                 FacesContext.getCurrentInstance().addMessage(null, fm);
             } else if(nombre.length()>30){
                 FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo nombre no puede contener mas de 30 caracteres", null);
@@ -258,7 +258,7 @@ public class Productos implements Serializable {
                 FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo nombre se encuentra vacio", null);
                 FacesContext.getCurrentInstance().addMessage(null, fm);
             }else if (!nom.matches()) {
-                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo nombre solo pude contener letras conformdas del abecedario [A-Z a-z] o [á é í ó ú] o numeros [0-9] ", null);
+                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo nombre solo pude contener letras conformadas del abecedario [A-Z a-z] o [á é í ó ú] o numeros [0-9] ", null);
                 FacesContext.getCurrentInstance().addMessage(null, fm);
             } else if(nombre.length()>30){
                 FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo nombre no puede contener mas de 30 caracteres", null);
