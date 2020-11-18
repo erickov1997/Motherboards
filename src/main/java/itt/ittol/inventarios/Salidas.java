@@ -6,6 +6,9 @@
 package itt.ittol.inventarios;
 
 import java.io.Serializable;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.enterprise.context.SessionScoped;
@@ -20,6 +23,7 @@ import javax.inject.Named;
 @Named("appSalidas")
 @SessionScoped
 public class Salidas implements Serializable {
+    private List<Salidas> ListSalidas;
     private String id_ent;
     private String id_prod;
     private String fecha;
@@ -56,8 +60,23 @@ public class Salidas implements Serializable {
     public void setCantidad(String cantidad) {
         this.cantidad = cantidad;
     }
+
+    public List<Salidas> getListSalidas() {
+        return ListSalidas;
+    }
+
+    public void setListSalidas(List<Salidas> ListSalidas) {
+        this.ListSalidas = ListSalidas;
+    }
+    
     
       public String agrSalida() throws ClassNotFoundException {
+          //fecha del sistema
+         Calendar fech = new GregorianCalendar();
+         String año = String.valueOf(fech.get(Calendar.YEAR));
+         String mes = String.valueOf(fech.get(Calendar.MONTH) + 1);
+         String dia = String.valueOf(fech.get(Calendar.DAY_OF_MONTH));
+         String fechaS = año + "/" + mes + "/" + dia;
            Pattern pat = Pattern.compile("([0-9]){1,3}$");
             Matcher mat = pat.matcher(String.valueOf(cantidad));
           if(String.valueOf(cantidad).equals("")){
@@ -65,12 +84,12 @@ public class Salidas implements Serializable {
                FacesContext.getCurrentInstance().addMessage(null, fm);
            }
            else if(!mat.matches()){
-               FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_ERROR,"El campo cantidad solo puede contener numeros y como un maximo de 3 digitos", null);
+               FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_ERROR,"El campo cantidad solo puede contener numeros [0-9] y como un maximo de 3 digitos", null);
                FacesContext.getCurrentInstance().addMessage(null, fm);
-           }else if(fecha.equals("")){
+           }/*else if(fecha.equals("")){
                FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_ERROR,"El campo fecha se encuentra vacio", null);
                FacesContext.getCurrentInstance().addMessage(null, fm);
-           }
+           }*/
            else{
         int cantid= Integer.parseInt(cantidad);
        
@@ -82,7 +101,7 @@ public class Salidas implements Serializable {
               return "Salidas.xhtml";
           }else{
                  
-               new InventariosValidations().InsertSalida(id_prod, fecha,cantid );
+               new InventariosValidations().InsertSalida(id_prod,fechaS,cantid );
                FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_INFO,"Salida de productos registrada correctamente",null);
                FacesContext.getCurrentInstance().addMessage(null, fm);
                 id_prod="";
@@ -93,6 +112,18 @@ public class Salidas implements Serializable {
            
            }
         return "Salidas.xhtml";
+    }
+      
+      public List<Salidas> ConsultSalidas() throws ClassNotFoundException{
+       
+          ListSalidas= new InventariosValidations().listaSalidas();   
+         return   ListSalidas;
+         
+    }   
+     
+    public String linksalidas() throws ClassNotFoundException{
+        ConsultSalidas();
+        return "ListSalidas.xhtml";
     } 
      
 }

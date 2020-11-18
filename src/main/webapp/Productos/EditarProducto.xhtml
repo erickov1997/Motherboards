@@ -19,7 +19,7 @@
                          <li><h:commandLink action="#{appProduct.linkalmacen()}" class="navli">Almacen</h:commandLink> </li>
                          <li><h:commandLink action="Productos/Productos.xhtml" class="navli">Productos</h:commandLink></li>
                          <li><h:commandLink action="/Pedidos/AgrPedido.xhtml" class="navli">Pedido</h:commandLink> </li>
-                          <li><h:commandLink action="/Inventarios/Inventario.xhtml" class="navli">Inventario</h:commandLink> </li>
+                          <li><h:commandLink action="#{appProduct.linkinventario()}" class="navli">Inventario</h:commandLink> </li>
                      </h:form>
                 
             </ul>
@@ -53,27 +53,27 @@
                       
                         <h:inputText class="form-control dato" a:placeholder="Nombre" value="#{appProduct.nombre}"/>
 
-                        <h:selectOneMenu class="form-control dato" value = "#{appProduct.tipo}" required="true" requiredMessage="Debe seleccionar un tipo">
-                            <f:selectItem  itemLabel = "---Tipo---" /> 
+                        <h:selectOneMenu class="form-control dato" value = "#{appProduct.tipo}">
+                            <f:selectItem  itemValue = "---Tipo---" itemLabel = "---Tipo---"  /> 
                             <f:selectItem itemValue = " ATX" itemLabel = " ATX" /> 
                             <f:selectItem itemValue = "micro ATX" itemLabel = "micro ATX" /> 
                             <f:selectItem itemValue = "Flex ATX" itemLabel = "Flex ATX" /> 
                         </h:selectOneMenu> 
 
-                        <h:selectOneMenu class="form-control dato" value = "#{appProduct.fam_proc}" required="true" requiredMessage="Debe seleccionar Familia de procesador">
-                            <f:selectItem  itemLabel = "---Familia de Procesador---" /> 
+                        <h:selectOneMenu class="form-control dato" value = "#{appProduct.fam_proc}">
+                            <f:selectItem  itemValue = "---Familia de Procesador---" itemLabel = "---Familia de Procesador---"/> 
                             <f:selectItem itemValue = "AMD" itemLabel = "AMD" /> 
                             <f:selectItem itemValue = "Intel" itemLabel = "INTEL" /> 
                         </h:selectOneMenu> 
                         
-                        <h:selectOneMenu class="form-control dato" value = "#{appProduct.mem_int}" required="true" requiredMessage="Debe seleccionar Memoria interna">
-                            <f:selectItem  itemLabel = "---Memoria Interna---" /> 
+                        <h:selectOneMenu class="form-control dato" value = "#{appProduct.mem_int}">
+                            <f:selectItem itemValue = "---Memoria Interna---" itemLabel = "---Memoria Interna---" /> 
                             <f:selectItem itemValue = "32 GB" itemLabel = "32 GB" /> 
                             <f:selectItem itemValue = "64 GB" itemLabel = "64 GB" />               
                         </h:selectOneMenu> 
                         
-                         <h:selectOneMenu class="form-control dato" value = "#{appProduct.tipo_meoria}" required="true" requiredMessage="Debe seleccionar un tipo de Memoria">
-                            <f:selectItem itemLabel = "---Tipo de Memoria---" /> 
+                         <h:selectOneMenu class="form-control dato" value = "#{appProduct.tipo_meoria}" >
+                            <f:selectItem itemValue = "---Tipo de Memoria---" itemLabel = "---Tipo de Memoria---" /> 
                             <f:selectItem itemValue = "DDR4 DIMM" itemLabel = "DDR4 DIMM" /> 
                             <f:selectItem itemValue = "DDR4-SDRAM" itemLabel = "DDR4-SDRAM" />
            

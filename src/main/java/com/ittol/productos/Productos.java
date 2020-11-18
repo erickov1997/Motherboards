@@ -7,6 +7,7 @@ package com.ittol.productos;
 
 import com.ittol.almacen.Almacen;
 import com.ittol.almacen.AlmacenValidations;
+import itt.ittol.inventarios.Inventarios;
 import itt.ittol.inventarios.InventariosValidations;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -167,10 +168,10 @@ public class Productos implements Serializable {
     }   
         
         public void agrProducto() throws ClassNotFoundException {
-           InventariosValidations prod=  new InventariosValidations();
-            
+            InventariosValidations prod=  new InventariosValidations();
+            Pattern cod = Pattern.compile("^[a-zA-Z0-9]+$");
+            Matcher eat = cod.matcher(id_prod);
             Pattern cat = Pattern.compile("[a-zA-Z ñ 0-9 á é í ó ú]*$");
-            Matcher eat = cat.matcher(id_prod);
             Matcher nom = cat.matcher(nombre);
             
             Pattern p = Pattern.compile( "^[1-9]\\d*(\\.\\d+)?$");
@@ -186,7 +187,7 @@ public class Productos implements Serializable {
                 FacesContext.getCurrentInstance().addMessage(null, fm);
             
             }*/ else if (!eat.matches()) {
-                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo codigo solo pude conetener letras conformdas en el abecedario o numeros [0-9]", null);
+                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo codigo solo pude contener letras conformdas del abecedario [A-Z a-z] a excepcion de [ñ] o numeros [0-9] y sin espacios", null);
                 FacesContext.getCurrentInstance().addMessage(null, fm);
             } else if (id_prod.length()!= 5) {
                 FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo codigo debe contener 5 caracteres", null);
@@ -195,7 +196,7 @@ public class Productos implements Serializable {
                 FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo nombre se encuentra vacio", null);
                 FacesContext.getCurrentInstance().addMessage(null, fm);
             }else if (!nom.matches()) {
-                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo nombre no puede contener caracteres especiales o la longitud supera los 20 caracteres", null);
+                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo nombre solo pude contener letras conformdas del abecedario [A-Z a-z] o [á é í ó ú] o numeros [0-9] ", null);
                 FacesContext.getCurrentInstance().addMessage(null, fm);
             } else if(nombre.length()>30){
                 FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo nombre no puede contener mas de 30 caracteres", null);
@@ -244,28 +245,43 @@ public class Productos implements Serializable {
     }
         
     public String EProducto() throws ClassNotFoundException {
-          Pattern cat = Pattern.compile("[a-zA-Z ñ 0-9 á é í ó ú]*$");
+           InventariosValidations prod=  new InventariosValidations();
+            Pattern cod = Pattern.compile("^[a-zA-Z0-9]+$");
+            Matcher eat = cod.matcher(id_prod);
+            Pattern cat = Pattern.compile("[a-zA-Z ñ 0-9 á é í ó ú]*$");
             Matcher nom = cat.matcher(nombre);
             
-         Pattern p = Pattern.compile( "^[1-9]\\d*(\\.\\d+)?$");
-         Matcher prec = p.matcher(prec_uni); 
+            Pattern p = Pattern.compile( "^[1-9]\\d*(\\.\\d+)?$");
+            Matcher prec = p.matcher(prec_uni);  
          
-        if (nombre.equals("")) {
-            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo nombre se encuentra vacio", null);
-            FacesContext.getCurrentInstance().addMessage(null, fm);
-        } else if (!nom.matches()) {
-            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo nombre no puede contener caracteres especiales o la longitud supera los 20 caracteres", null);
-            FacesContext.getCurrentInstance().addMessage(null, fm);
-        } else if (nombre.length() > 30) {
-            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo nombre no puede contener mas de 30 caracteres", null);
-            FacesContext.getCurrentInstance().addMessage(null, fm);
-        }else if(prec_uni.equals("")){
+      if(nombre.equals("")){
+                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo nombre se encuentra vacio", null);
+                FacesContext.getCurrentInstance().addMessage(null, fm);
+            }else if (!nom.matches()) {
+                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo nombre solo pude contener letras conformdas del abecedario [A-Z a-z] o [á é í ó ú] o numeros [0-9] ", null);
+                FacesContext.getCurrentInstance().addMessage(null, fm);
+            } else if(nombre.length()>30){
+                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo nombre no puede contener mas de 30 caracteres", null);
+                FacesContext.getCurrentInstance().addMessage(null, fm);
+            }else if (tipo.equals("---Tipo---")) {
+                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Debe seleccionar un tipo", null);
+                FacesContext.getCurrentInstance().addMessage(null, fm);
+            }else if (fam_proc.equals("---Familia de Procesador---")) {
+                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Debe seleccionar Familia de Procesador", null);
+                FacesContext.getCurrentInstance().addMessage(null, fm);
+            }else if (mem_int.equals("---Memoria Interna---")) {
+                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Debe seleccionar Memoria Interna", null);
+                FacesContext.getCurrentInstance().addMessage(null, fm);
+            }else if (tipo_meoria.equals("---Tipo de Memoria---")) {
+                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Debe seleccionar Tipo de Memoria", null);
+                FacesContext.getCurrentInstance().addMessage(null, fm);
+            }else if(prec_uni.equals("")){
                 FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo precio unitario se encuentra vacio", null);
                 FacesContext.getCurrentInstance().addMessage(null, fm);
             }else if(!prec.matches()){
                 FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo precio unitario solo puede contener numeros enteros o decimales", null);
                 FacesContext.getCurrentInstance().addMessage(null, fm);
-            } else {
+            }else {
             FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_INFO, "Producto Editado correctamente", null);
                 FacesContext.getCurrentInstance().addMessage(null, fm);
             double precio = Double.parseDouble(prec_uni);
@@ -349,6 +365,12 @@ public class Productos implements Serializable {
         almacen.setDireccion("");
         return "/Almacen/Almacen.xhtml";
     }   
+    
+    public String linkinventario() throws ClassNotFoundException{
+    Inventarios inv= new Inventarios();
+    inv.ConsultInventario();
+    return "/Inventarios/Inventario.xhtml";
+    }
        
        
     

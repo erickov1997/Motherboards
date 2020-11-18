@@ -8,21 +8,19 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous"></link>
     <link rel="stylesheet" href="../public/estilos/styles.css"></link>
     <h:head>
-        <title>Facelet Title</title>
+        <title>Registro de Salidas</title>
     </h:head>
     <h:body>
-        <nav>
+       <nav>
             <span class="title">Motherboards</span>
             <div class="listas">
                  <ul class="nav">
-                     <h:form class="navf">
-                        <li><h:commandLink action="Almacen.xhtml" class="navli">Almacen</h:commandLink> </li>
+                 <h:form class="navf">
+                        <li><h:commandLink action="/Almacen/Almacen.xhtml" class="navli">Almacen</h:commandLink> </li>
                          <li><h:commandLink action="/Productos/Productos.xhtml" class="navli">Productos</h:commandLink></li>
                          <li><h:commandLink action="/Pedidos/AgrPedido.xhtml" class="navli">Pedido</h:commandLink> </li>
-                          <li><h:commandLink action="/Inventarios/Inventario.xhtml" class="navli">Inventario</h:commandLink> </li>
-                     </h:form>
-               
-                <li></li>
+                          <li><h:commandLink action="#{appInv.process()}" class="navli">Inventario</h:commandLink> </li>
+                    </h:form>
                 
             </ul>
             <ul class="sesion">
@@ -38,45 +36,48 @@
         <div class="contenedor">
             <div class="menu-lateral">
                 <ul class="menu-prov">
-                     <h:form>                  
-                        <li><h:commandLink action="AlmacenList" class="navli">Lista de Almacenes</h:commandLink> </li>
+                    <h:form >
+                        <li><h:commandLink action="#{appInv.process()}" class="navli">Inventario</h:commandLink> </li>                     
+                        <li><h:commandLink action="Salidas" class="navli">Salidas</h:commandLink> </li>
+                        <li><h:commandLink action="ListSalidas.xhtml" class="navli">Registro de Salidas</h:commandLink> </li>
                     </h:form>
                 </ul>
-                
+
             </div>
             <div class="contenido">
+                <h1>Registro de Salidas</h1>
+                <div class="tabla">
+                    <h:dataTable   class="table table-striped table-bordered" value="#{appSalidas.listSalidas}" var="sal">
+                    <h:column>    				
+                        <f:facet name="header">
+                            <h:outputLabel value="codigo"/>
+                        </f:facet>
+                        <h:outputLabel value="#{sal.id_ent}"/> 				
+                    </h:column>
+                    <h:column>
+                        <f:facet name = "header">
+                         <h:outputLabel value="Producto"/>
+                        </f:facet>
+                        <h:outputLabel value="#{sal.id_prod}"/> 				
+                    </h:column>
+                    
+                    <h:column>
+                        <f:facet name = "header">
+                         <h:outputLabel value="Cantidad"/>
+                        </f:facet>
+                        <h:outputLabel value="#{sal.cantidad}"/> 				
+                    </h:column>
+                    <h:column>
+                        <f:facet name = "header">
+                         <h:outputLabel value="Fecha de salida"/>
+                        </f:facet>
+                        <h:outputLabel value="#{sal.fecha}"/> 	
+                    </h:column>
+                </h:dataTable>
+                </div>
                 
-                <h1>Editar Almacen</h1>
-               <h:messages errorStyle="color:red;width:auto;text-align:center;background:#f8d7da;border-radius:5px; box-shadow: 0 1px 3px rgba(0,0,0,.5);padding:10px;margin-left:25%;margin-right:25%;margin-top:20px"
-                            infoStyle="color:green;width:auto;text-align:center;background:#d4edda;border-radius:5px; box-shadow: 0 1px 3px rgba(0,0,0,.5);padding:10px;margin-left:25%;margin-right:25%;margin-top:20px"/>
-                <h:form class="fdatos">
-                   
-                    <div class="datos_prov">
-                      
-                        <h:inputText class="form-control dato" a:placeholder="Nombre" value="#{appAlmacen.nombre}">
-                        </h:inputText>
-                        <h:inputText class="form-control dato" a:placeholder="Direccion" value="#{appAlmacen.direccion}"  >
-                        </h:inputText>
-                         
-                        <h:inputText class="form-control dato" a:placeholder="Descripcion" value="#{appAlmacen.descripcion}">
-                            
-                        </h:inputText>
-          
-                    </div>
-                   
-                    
-                   
-                    <div class="botonagr">
-                        <h:commandButton class="btn btn-primary agrProd" value="Editar" action="#{appAlmacen.process4()}"></h:commandButton>
-                    </div>
-                    
-                    
-                   
-                </h:form>
             </div>
         </div>
-            
-            
     </h:body>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>

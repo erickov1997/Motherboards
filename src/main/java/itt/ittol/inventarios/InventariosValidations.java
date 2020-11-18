@@ -77,6 +77,26 @@ public class InventariosValidations {
         
     }
      
-    
+     public List listaEntradas() throws ClassNotFoundException{
+        DBHandler handler = new DBHandler();
+        handler.getConnection();
+        List lst = handler.EntradasList("SELECT * FROM entradas");
+        System.out.println("Entradaslist: "+lst);
+        return lst;
+    } 
+     
+    public List listaSalidas() throws ClassNotFoundException{
+        DBHandler handler = new DBHandler();
+        handler.getConnection();
+        List lst = handler.SalidasList("SELECT * FROM salidas");
+        System.out.println("Salidaslist: "+lst);
+        return lst;
+    }  
+     
+    public static void main(String[] args) throws ClassNotFoundException {
+        /*InventariosValidations obj= new InventariosValidations();
+        obj.listaEntradas();*/
+    }
+ 
      
 }

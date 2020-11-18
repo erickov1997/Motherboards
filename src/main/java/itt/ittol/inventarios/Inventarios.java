@@ -25,6 +25,7 @@ import javax.inject.Named;
 
 public class Inventarios  implements Serializable{
     private List<SelectItem> listidProd;
+     private List<Productos> listProd;
     private String producto;
 
    
@@ -35,6 +36,15 @@ public class Inventarios  implements Serializable{
     public void setProducto(String producto) {
         this.producto = producto;
     }
+
+    public List<Productos> getListProd() {
+        return listProd;
+    }
+
+    public void setListProd(List<Productos> listProd) {
+        this.listProd = listProd;
+    }
+    
     
     public List<SelectItem> getListidProd() throws ClassNotFoundException{
          this.listidProd= new ArrayList<SelectItem>();
@@ -49,21 +59,25 @@ public class Inventarios  implements Serializable{
          }
         
          return listidProd;
+    } 
+    
+    public List<Productos> ConsultInventario() throws ClassNotFoundException{
+       
+        Productos producto= new Productos();
+        listProd=producto.ConsultProductos();
+         return listProd;
     }   
     
     public String process() throws ClassNotFoundException {
-        Productos producto= new Productos();
-        producto.ConsultProductos();
-       
-        return "Invetario.xhtml";
-       
-        
+        ConsultInventario();
+        return "Inventario.xhtml";      
     } 
         
     
     
     public static void main(String[] args) throws ClassNotFoundException {
-        
+        Productos producto= new Productos();
+        producto.ConsultProductos();
     }
    
 }

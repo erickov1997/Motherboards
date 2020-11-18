@@ -9,6 +9,7 @@ import com.ittol.almacen.Almacen;
 import com.ittol.pedidos.Pedidos;
 import com.ittol.productos.Productos;
 import com.ittol.users.Usuarios;
+import itt.ittol.inventarios.Entradas;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -152,6 +153,52 @@ public class DBHandler {
                      
                     
                      l.add(prod);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(DBHandler.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return l;
+     }
+     
+      public  List EntradasList(String sqlStatement) {
+        List l = null;
+        if (conn != null) {
+            try {
+                PreparedStatement ps = conn.prepareStatement(sqlStatement);
+                ResultSet rs = ps.executeQuery();
+                l = new ArrayList();
+                while (rs.next()) {
+                     Entradas ent = new Entradas();
+                     ent.setId_ent(rs.getString("id_ent"));
+                     ent.setId_prod(rs.getString("id_prod"));
+                     ent.setFecha(rs.getString("fech_ent"));
+                     ent.setCantidad(rs.getString("cantidad"));
+                     
+                     l.add(ent);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(DBHandler.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return l;
+     }
+      
+      public  List SalidasList(String sqlStatement) {
+        List l = null;
+        if (conn != null) {
+            try {
+                PreparedStatement ps = conn.prepareStatement(sqlStatement);
+                ResultSet rs = ps.executeQuery();
+                l = new ArrayList();
+                while (rs.next()) {
+                     Entradas ent = new Entradas();
+                     ent.setId_ent(rs.getString("id_sal"));
+                     ent.setId_prod(rs.getString("id_prod"));
+                     ent.setFecha(rs.getString("fecha_sal"));
+                     ent.setCantidad(rs.getString("cantidad"));
+                     
+                     l.add(ent);
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(DBHandler.class.getName()).log(Level.SEVERE, null, ex);

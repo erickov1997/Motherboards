@@ -32,8 +32,7 @@
             <div class="menu-lateral">
                 <ul class="menu-prov">
                      <h:form >
-                        <li><h:commandLink action="agr_user.xhtml" class="navli">Agregar Usuario</h:commandLink> </li>
-                        <li><h:commandLink action="#{appUser.editvista()}" class="navli">Editar Usuario</h:commandLink> </li> 
+                        <li><h:commandLink action="agr_user.xhtml" class="navli">Agregar Usuario</h:commandLink> </li>                     
                         <li><h:commandLink action="#{appUser.process()}" class="navli">Consultar Usuarios</h:commandLink> </li>                       
                     </h:form>
                 </ul>
@@ -41,16 +40,7 @@
             </div>
             <div class="contenido">
                 <h1>Editar usuario</h1>
-                <h:form class="fdatos">
-                    <h:selectOneMenu id="almc" class="form-control dato" value="#{appUser.id}" required="true" requiredMessage="Debe seleccionar un usuario" >
-                           <f:selectItem itemLabel="---Seleccione usuario----" />
-                           <f:selectItems  value="#{appUser.listidUsers}"/>
-                           
-                       </h:selectOneMenu>
-                    <div class="botonagr">
-                        <h:commandButton class="btn btn-primary agrProd" action="#{appUser.searchuser()}" value="Buscar" ></h:commandButton>
-                    </div>
-                </h:form>
+               
                 <h:form class="fdatos">
                     <h:messages errorStyle="color:red;width:auto;text-align:center;background:#f8d7da;border-radius:5px; box-shadow: 0 1px 3px rgba(0,0,0,.5);padding:10px;margin-left:25%;margin-right:25%;margin-top:20px"
                             infoStyle="color:green;width:auto;text-align:center;background:#d4edda;border-radius:5px; box-shadow: 0 1px 3px rgba(0,0,0,.5);padding:10px;margin-left:25%;margin-right:25%;margin-top:20px"/>
@@ -71,7 +61,7 @@
                     
                    
                     <div class="botonagr">
-                        <h:commandButton class="btn btn-primary agrProd" value="Editar" action="#{appUser.edituser()}"></h:commandButton>
+                        <h:commandButton class="btn btn-primary agrProd" value="Editar" action="#{appUser.edituser()}" ></h:commandButton>
                     </div>
                     
                 </h:form>

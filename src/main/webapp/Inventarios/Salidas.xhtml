@@ -25,7 +25,7 @@
                         <li><h:commandLink action="/Almacen/Almacen.xhtml" class="navli">Almacen</h:commandLink> </li>
                          <li><h:commandLink action="/Productos/Productos.xhtml" class="navli">Productos</h:commandLink></li>
                          <li><h:commandLink action="/Pedidos/AgrPedido.xhtml" class="navli">Pedido</h:commandLink> </li>
-                          <li><h:commandLink action="Inventarios/Inventario.xhtml" class="navli">Inventario</h:commandLink> </li>
+                          <li><h:commandLink action="#{appInv.process()}" class="navli">Inventario</h:commandLink> </li>
                     </h:form>
                 
             </ul>
@@ -45,9 +45,9 @@
             <div class="menu-lateral">
                 <ul class="menu-prov">
                     <h:form >
-                        <li><h:commandLink action="Inventario.xhtml" class="navli">Inventario</h:commandLink> </li>
-                         <li><h:commandLink action="Entradas.xhtml" class="navli">Entradas</h:commandLink> </li>
+                        <li><h:commandLink action="#{appInv.process()}" class="navli">Inventario</h:commandLink> </li>                       
                         <li><h:commandLink action="Salidas.xhtml" class="navli">Salidas</h:commandLink> </li>
+                        <li><h:commandLink action="#{appSalidas.linksalidas()}" class="navli">Registro de Salidas</h:commandLink> </li>
                     </h:form>
                 </ul>
 
@@ -66,7 +66,7 @@
                            
                        </h:selectOneMenu>
                         <h:inputText class="form-control dato" a:placeholder="cantidad" autocomplete="off" value="#{appSalidas.cantidad}" required="true" requiredMessage="Ingrese cantidad"/>
-                        <h:inputText class="form-control dato datepicker" autocomplete="off" a:placeholder="fecha de salida" value="#{appSalidas.fecha}"/>
+                        
           
                     </div>
                    
