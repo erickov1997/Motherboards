@@ -150,6 +150,8 @@ public class DBHandler {
                      prod.setAlmacen(rs.getString("almacen"));
                      prod.setStock(rs.getInt("stock"));
                      prod.setVendidos(rs.getInt("cant_vent"));
+                     prod.setStatus(rs.getString("status"));
+                     
                      
                     
                      l.add(prod);

@@ -185,7 +185,7 @@ public class Almacen implements Serializable {
                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo nombre se encuentra vacio", null);
                FacesContext.getCurrentInstance().addMessage(null, fm);
            } else if (!eat.matches()) {
-               FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo nombre solo puede contener letras del alfabeto y numero del 0-9", null);
+               FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo nombre solo puede contener letras del alfabeto[a-zA-Z],[á é í ó ú]y numeros del 0-9", null);
                FacesContext.getCurrentInstance().addMessage(null, fm);
            } else if (nombre.length() > 15) {
                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo nombre no puede contener mas de 15 caracteres", null);

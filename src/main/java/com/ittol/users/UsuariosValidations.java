@@ -8,6 +8,8 @@ package com.ittol.users;
 import com.ittol.almacen.Almacen;
 import com.ittol.beans.DBHandler;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -51,9 +53,18 @@ public class UsuariosValidations {
         handler.executeInsert("UPDATE usuarios SET nombre='"+nombre+"', ape_pat='"+ape_pat+"',ape_mat='"+ape_mat+"',usuario='"+usuario+"',password='"+password+"',tipo='"+tipo+"' WHERE id_usuario='"+id_usuario+"'");  
     }
      
+    public void DeleteUser(String id_user){
+    DBHandler handler= new DBHandler();
+        try {
+            handler.getConnection();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(UsuariosValidations.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    handler.executeInsert("DELETE FROM usuarios WHERE id_usuario='"+id_user+"'");
+    }
      public static void main(String[] args) throws ClassNotFoundException {
-        UsuariosValidations obj= new UsuariosValidations ();
-         System.out.println("datos usuario"+ obj.UserEditId(1));
+       /* UsuariosValidations obj= new UsuariosValidations ();
+        obj.DeleteUser("8");*/
         
     }
 

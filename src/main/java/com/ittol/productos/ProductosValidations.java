@@ -16,10 +16,10 @@ import java.util.logging.Logger;
  * @author Erick
  */
 public class ProductosValidations {
-     public void InsertProduct(String id_prod,String nombre,String tipo,String fam_proc,String mem_int,String tipo_meoria,double prec_uni,int almacen) throws ClassNotFoundException{
+     public void InsertProduct(String id_prod,String nombre,String tipo,String fam_proc,String mem_int,String tipo_meoria,double prec_uni,int almacen,String status) throws ClassNotFoundException{
         DBHandler handler = new DBHandler();
         handler.getConnection();
-        handler.executeInsert("INSERT INTO public.\"Productos\"(id_prod, nombre, tipo, fam_proc, mem_int, tipo_meoria, prec_uni, almacen) "+ "VALUES('"+id_prod+"','"+nombre+"','"+tipo+"','"+fam_proc+"','"+mem_int+"','"+tipo_meoria+"','"+prec_uni+"','"+almacen+"')");
+        handler.executeInsert("INSERT INTO public.\"Productos\"(id_prod, nombre, tipo, fam_proc, mem_int, tipo_meoria, prec_uni, almacen,status) "+ "VALUES('"+id_prod+"','"+nombre+"','"+tipo+"','"+fam_proc+"','"+mem_int+"','"+tipo_meoria+"','"+prec_uni+"','"+almacen+"','"+status+"')");
     }
      
      public List listaProductos() throws ClassNotFoundException{
@@ -38,10 +38,10 @@ public class ProductosValidations {
         return lst;
     } 
      
-    public void Editar(String id_prod,String nombre,String tipo,String fam_proc,String mem_int,String tipo_meoria,double prec_uni) throws ClassNotFoundException{
-       DBHandler handler = new DBHandler();
+    public void Editar(String id_prod,String nombre,String tipo,String fam_proc,String mem_int,String tipo_meoria,double prec_uni,String status) throws ClassNotFoundException{
+        DBHandler handler = new DBHandler();
         handler.getConnection();
-        handler.executeInsert("UPDATE \"Productos\" SET nombre='"+nombre+"', tipo='"+tipo+"',fam_proc='"+fam_proc+"',mem_int='"+mem_int+"',tipo_meoria='"+tipo_meoria+"',prec_uni='"+prec_uni+"' WHERE id_prod='"+id_prod+"'");  
+        handler.executeInsert("UPDATE \"Productos\" SET nombre='"+nombre+"', tipo='"+tipo+"',fam_proc='"+fam_proc+"',mem_int='"+mem_int+"',tipo_meoria='"+tipo_meoria+"',prec_uni='"+prec_uni+"',status='"+status+"' WHERE id_prod='"+id_prod+"'");  
     }
     
 }

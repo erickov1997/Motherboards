@@ -17,7 +17,7 @@
                  <ul class="nav">
                  <h:form class="navf">
                          <li><h:commandLink action="#{appProduct.linkalmacen()}" class="navli">Almacen</h:commandLink> </li>
-                         <li><h:commandLink action="Productos/Productos.xhtml" class="navli">Productos</h:commandLink></li>
+                         <li><h:commandLink action="Productos.xhtml" class="navli">Productos</h:commandLink></li>
                          <li><h:commandLink action="/Pedidos/AgrPedido.xhtml" class="navli">Pedido</h:commandLink> </li>
                           <li><h:commandLink action="#{appProduct.linkinventario()}" class="navli">Inventario</h:commandLink> </li>
                      </h:form>
@@ -78,7 +78,12 @@
                             <f:selectItem itemValue = "DDR4-SDRAM" itemLabel = "DDR4-SDRAM" />
            
                         </h:selectOneMenu> 
-                        
+                        <h:selectOneMenu class="form-control dato" value = "#{appProduct.status}" >
+                            <f:selectItem itemValue = "---Status---" itemLabel = "---Status---" /> 
+                            <f:selectItem itemValue = "0" itemLabel = "0" /> 
+                            <f:selectItem itemValue = "1" itemLabel = "1" />
+           
+                        </h:selectOneMenu>  
                         
                         <h:inputText class="form-control dato" a:placeholder="Precio unitario" value="#{appProduct.prec_uni}" required="true" requiredMessage="Ingrese precio unitario"/>
                     

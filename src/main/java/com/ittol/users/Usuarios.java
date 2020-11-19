@@ -12,6 +12,8 @@ import com.ittol.productos.ProductosValidations;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.enterprise.context.SessionScoped;
@@ -309,4 +311,15 @@ public class Usuarios implements Serializable{
          return "editUser.xhtml";
      
      }  
+     public void deleteuser(String idUser){
+         new UsuariosValidations().DeleteUser(idUser);
+         FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario eliminado correctamente", null);
+         FacesContext.getCurrentInstance().addMessage(null, fm);
+        try {
+            //return "Consult_users.xhtml";
+            process();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Usuarios.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     }
 }

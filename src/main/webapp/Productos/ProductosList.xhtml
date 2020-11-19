@@ -17,7 +17,7 @@
                  <ul class="nav">
                  <h:form class="navf">
                        <li><h:commandLink action="#{appProduct.linkalmacen()}" class="navli">Almacen</h:commandLink> </li>
-                         <li><h:commandLink action="Productos/Productos.xhtml" class="navli">Productos</h:commandLink></li>
+                         <li><h:commandLink action="Productos.xhtml" class="navli">Productos</h:commandLink></li>
                          <li><h:commandLink action="/Pedidos/AgrPedido.xhtml" class="navli">Pedido</h:commandLink> </li>
                           <li><h:commandLink action="#{appProduct.linkinventario()}" class="navli">Inventario</h:commandLink> </li>
                     </h:form>
@@ -88,18 +88,25 @@
                             <h:outputLabel value="#{prod.prec_uni}"/>
                     </h:column>
                     
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputLabel value="Almacen"/>
-                        </f:facet>
-                        <h:outputLabel value="#{prod.almacen}"/>
-                    </h:column>
-                     <h:column>
-                        <f:facet name="header">
-                            <h:outputLabel value="Editar"/>
-                        </f:facet>
-                         <h:form>
-                              <h:commandButton class="btn btn-primary agrProd" value="Editar" action="#{appProduct.getproduct(prod.id_prod)}"/>
+                         <h:column>
+                             <f:facet name="header">
+                                 <h:outputLabel value="Almacen"/>
+                             </f:facet>
+                             <h:outputLabel value="#{prod.almacen}"/>
+                         </h:column>
+
+                         <h:column>
+                             <f:facet name="header">
+                                 <h:outputLabel value="Status"/>
+                             </f:facet>
+                             <h:outputLabel value="#{prod.status}"/>
+                         </h:column>
+                         <h:column>     
+                             <f:facet name="header">
+                                 <h:outputLabel value="Editar"/>
+                             </f:facet>
+                             <h:form>
+                                 <h:commandButton class="btn btn-primary agrProd" value="Editar" action="#{appProduct.getproduct(prod.id_prod)}"/>
                          </h:form>
                        
                     </h:column>    

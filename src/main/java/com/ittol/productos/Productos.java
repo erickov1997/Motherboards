@@ -39,6 +39,7 @@ public class Productos implements Serializable {
     private String tipo_meoria;
     private String prec_uni;
     private String almacen;
+    private String status;
     private int stock;
     private int vendidos;
     private List<Productos> listProductos;
@@ -127,6 +128,14 @@ public class Productos implements Serializable {
     public void setVendidos(int vendidos) {
         this.vendidos = vendidos;
     }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
     
     
 
@@ -177,16 +186,16 @@ public class Productos implements Serializable {
             Pattern p = Pattern.compile( "^[1-9]\\d*(\\.\\d+)?$");
             Matcher prec = p.matcher(prec_uni); 
             
-            //String cprod=String.valueOf(prod.ConsultIdProd(id_prod).get(0));
+            String cprod=prod.ConsultIdProd(id_prod);
            
             if (id_prod.equals("")) {
                 FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo codigo se encuentra vacio", null);
                 FacesContext.getCurrentInstance().addMessage(null, fm);
-            }/*else if(cprod.equals(id_prod)){
+            }else if(cprod.equals(id_prod)){
                 FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El codigo ya existe", null);
                 FacesContext.getCurrentInstance().addMessage(null, fm);
             
-            }*/ else if (!eat.matches()) {
+            } else if (!eat.matches()) {
                 FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo codigo solo pude contener letras conformadas del abecedario [A-Z a-z] a excepcion de [ñ] o numeros [0-9] y sin espacios", null);
                 FacesContext.getCurrentInstance().addMessage(null, fm);
             } else if (id_prod.length()!= 5) {
@@ -217,6 +226,9 @@ public class Productos implements Serializable {
             else if (almacen.equals("---Almacen----")) {
                 FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Debe seleccionar un Almacen", null);
                 FacesContext.getCurrentInstance().addMessage(null, fm);
+            }else if(status.equals("---Status---")){
+                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Debe seleccionar el status", null);
+                FacesContext.getCurrentInstance().addMessage(null, fm);
             }
             else if(prec_uni.equals("")){
                 FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo precio unitario se encuentra vacio", null);
@@ -229,7 +241,7 @@ public class Productos implements Serializable {
                 FacesContext.getCurrentInstance().addMessage(null, fm);
                 double precio = Double.parseDouble(prec_uni);
                 int almc = Integer.parseInt(almacen);
-                new ProductosValidations().InsertProduct(id_prod, nombre, tipo, fam_proc, mem_int, tipo_meoria, precio, almc);
+                new ProductosValidations().InsertProduct(id_prod, nombre, tipo, fam_proc, mem_int, tipo_meoria, precio, almc,status);
                 id_prod="";
                 nombre="";
                 tipo="---Tipo---";
@@ -237,6 +249,7 @@ public class Productos implements Serializable {
                 mem_int="---Memoria Interna---";
                 tipo_meoria="---Tipo de Memoria---";
                 almacen="---Almacen----";
+                status="---Status---";
                 prec_uni="";
             }
 
@@ -281,11 +294,14 @@ public class Productos implements Serializable {
             }else if(!prec.matches()){
                 FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo precio unitario solo puede contener numeros enteros o decimales", null);
                 FacesContext.getCurrentInstance().addMessage(null, fm);
+            }else if(status.equals("---Status---")){
+                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Debe seleccionar el status", null);
+                FacesContext.getCurrentInstance().addMessage(null, fm);
             }else {
             FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_INFO, "Producto Editado correctamente", null);
                 FacesContext.getCurrentInstance().addMessage(null, fm);
             double precio = Double.parseDouble(prec_uni);
-            new ProductosValidations().Editar(id_prod, nombre, tipo, fam_proc, mem_int, tipo_meoria, precio);
+            new ProductosValidations().Editar(id_prod, nombre, tipo, fam_proc, mem_int, tipo_meoria, precio, status);
                 id_prod="";
                 nombre="";
                 tipo="---Tipo---";
@@ -293,6 +309,9 @@ public class Productos implements Serializable {
                 mem_int="---Memoria Interna---";
                 tipo_meoria="---Tipo de Memoria---";             
                 prec_uni="";
+                //status="---Status---";
+               
+               ConsultProductos();
                 return "ProductosList.xhtml";
         }
         return "EditarProducto.xhtml";

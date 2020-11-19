@@ -18,20 +18,26 @@ public class InventariosValidations {
     
      public List ConsultIdProd() throws ClassNotFoundException{
         //DBHandler handler = new DBHandler();
-        
+        String status="1";
         query.getConnection();
-        List id = query.IDProd("SELECT id_prod FROM \"Productos\"");
+        List id = query.IDProd("SELECT id_prod FROM \"Productos\" WHERE status='"+status+"'");
         System.out.println("id_prod: "+id);
         return id;
     }
      
-     public List ConsultIdProd(String id_prod) throws ClassNotFoundException{
+     public String ConsultIdProd(String id_prod) throws ClassNotFoundException{
         //DBHandler handler = new DBHandler();
         
-        query.getConnection();
-        List id = query.IDProd("SELECT id_prod FROM \"Productos\" WHERE id_prod ='"+id_prod+"'");
-        System.out.println("id_prod: "+id);
-        return id;
+         query.getConnection();
+         List id = query.IDProd("SELECT id_prod FROM \"Productos\" WHERE id_prod ='" + id_prod + "'");
+         if (id.size() == 0) {
+             return "";
+         } else {
+             String idprod = (String) id.get(0);
+             System.out.println("id_prod: " + idprod);
+             return idprod;
+         }
+
     } 
      
      public void InsertEntrada(String id_prod,String fecha_ent,int cantidad) throws ClassNotFoundException{
@@ -94,8 +100,15 @@ public class InventariosValidations {
     }  
      
     public static void main(String[] args) throws ClassNotFoundException {
-        /*InventariosValidations obj= new InventariosValidations();
-        obj.listaEntradas();*/
+        InventariosValidations obj= new InventariosValidations();
+        String cad= obj.ConsultIdProd("dgcdf");
+        String cad2="dgcdx";
+       
+        if ( cad.equals(cad2)) {
+            System.out.println("iguales");
+        }else{
+            System.out.println("no son iguales");
+        }
     }
  
      
