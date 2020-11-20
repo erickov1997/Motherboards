@@ -108,28 +108,28 @@ public class Almacen implements Serializable {
                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo nombre se encuentra vacio", null);
                FacesContext.getCurrentInstance().addMessage(null, fm);
            } else if (!eat.matches()) {
-               FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo nombre solo puede contener letras del alfabeto y numero del 0-9", null);
+               FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo nombre solo puede contener letras [a-zA-Z][á é í ó ú] y numeros del [0-9]", null);
                FacesContext.getCurrentInstance().addMessage(null, fm);
            } else if (nombre.length() > 15) {
-               FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo nombre no puede contener mas de 15 caracteres", null);
+               FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo nombre no debe contener mas de 15 caracteres", null);
                FacesContext.getCurrentInstance().addMessage(null, fm);
            } else if (descripcion.equals("")) {
                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo descripcion se encuentra vacio", null);
                FacesContext.getCurrentInstance().addMessage(null, fm);
            }else if(descripcion.length()>30){
-               FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo descripcion no puede contener mas de 30 caracteres", null);
+               FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo descripcion no debe contener mas de 30 caracteres", null);
                FacesContext.getCurrentInstance().addMessage(null, fm);
            } else if (!van.matches()) {
-               FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo descripcion solo puede contener letras del alfabeto y numeros del 0-9", null);
+               FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo descripcion solo puede contener  letras [a-zA-Z][á é í ó ú] y numeros del [0-9]", null);
                FacesContext.getCurrentInstance().addMessage(null, fm);
            } else if (direccion.equals("")) {
                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo direccion se encuentra vacio", null);
                FacesContext.getCurrentInstance().addMessage(null, fm);
            }else if(direccion.length()>50){
-               FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo direccion no pude contener mas de 50 caracteres", null);
+               FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo direccion no debe contener mas de 50 caracteres", null);
                FacesContext.getCurrentInstance().addMessage(null, fm);
            } else if (!dir.matches()) {
-               FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo direccion solo puede contener letras del alfabeto, numeros 0-9 o (#)", null);
+               FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo direccion solo puede contener letras [a-zA-Z][á é í ó ú] y numeros del [0-9] o [#]", null);
                FacesContext.getCurrentInstance().addMessage(null, fm);
            } else {
                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_INFO, "Almacen registrado correctamente", null);
@@ -185,7 +185,7 @@ public class Almacen implements Serializable {
                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo nombre se encuentra vacio", null);
                FacesContext.getCurrentInstance().addMessage(null, fm);
            } else if (!eat.matches()) {
-               FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo nombre solo puede contener letras del alfabeto[a-zA-Z],[á é í ó ú]y numeros del 0-9", null);
+               FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo nombre solo puede contener letras [a-zA-Z][á é í ó ú] y numeros del [0-9]", null);
                FacesContext.getCurrentInstance().addMessage(null, fm);
            } else if (nombre.length() > 15) {
                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo nombre no puede contener mas de 15 caracteres", null);
@@ -197,7 +197,7 @@ public class Almacen implements Serializable {
                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo descripcion no puede contener mas de 30 caracteres", null);
                FacesContext.getCurrentInstance().addMessage(null, fm);
            } else if (!van.matches()) {
-               FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo descripcion solo puede contener letras del alfabeto y numeros del 0-9", null);
+               FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo descripcion solo puede contener letras [a-zA-Z][á é í ó ú] y numeros del [0-9]", null);
                FacesContext.getCurrentInstance().addMessage(null, fm);
            } else if (direccion.equals("")) {
                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo direccion se encuentra vacio", null);
@@ -206,7 +206,7 @@ public class Almacen implements Serializable {
                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo direccion no pude contener mas de 50 caracteres", null);
                FacesContext.getCurrentInstance().addMessage(null, fm);
            } else if (!dir.matches()) {
-               FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo direccion solo puede contener letras del alfabeto, numeros 0-9 o (#)", null);
+               FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo direccion solo puede contener letras [a-zA-Z][á é í ó ú] y numeros del [0-9] o [#]", null);
                FacesContext.getCurrentInstance().addMessage(null, fm);
            } else{
                 FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_INFO,"Almacen Editado correctamente",null);
