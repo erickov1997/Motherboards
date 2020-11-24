@@ -62,10 +62,25 @@ public class UsuariosValidations {
         }
     handler.executeInsert("DELETE FROM usuarios WHERE id_usuario='"+id_user+"'");
     }
-     public static void main(String[] args) throws ClassNotFoundException {
-       /* UsuariosValidations obj= new UsuariosValidations ();
-        obj.DeleteUser("8");*/
+    
+    
+     public String GetNameUser(String usuario) throws ClassNotFoundException{
+        DBHandler handler = new DBHandler(); 
+        handler.getConnection();
+        List user=handler.getUser("SELECT usuario FROM usuarios WHERE usuario ='" + usuario + "'");      
+         if (user.size() == 0) {
+             return "";
+         } else {
+             String getuser = (String) user.get(0);
+             System.out.println("usuario: " + getuser);
+             return getuser;
+         }
+
+    } 
+    /* public static void main(String[] args) throws ClassNotFoundException {
+        UsuariosValidations obj= new UsuariosValidations ();
+        obj.GetNameUser("usuario1d");
         
-    }
+    }*/
 
 }

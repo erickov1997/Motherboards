@@ -178,7 +178,8 @@ public class Productos implements Serializable {
         
         public void agrProducto() throws ClassNotFoundException {
             InventariosValidations prod=  new InventariosValidations();
-            Pattern cod = Pattern.compile("^[a-zA-Z0-9]+$");
+          // Pattern cat = Pattern.compile("[a-zA-Z ñ 0-9 á é í ó ú]+$");
+            Pattern cod = Pattern.compile("[a-zA-Z0-9]+$");
             Matcher eat = cod.matcher(id_prod);
             Pattern cat = Pattern.compile("[a-zA-Z ñ 0-9 á é í ó ú]*$");
             Matcher nom = cat.matcher(nombre);
@@ -309,9 +310,9 @@ public class Productos implements Serializable {
                 mem_int="---Memoria Interna---";
                 tipo_meoria="---Tipo de Memoria---";             
                 prec_uni="";
-                //status="---Status---";
+                status="---Status---";
                
-               ConsultProductos();
+                ConsultProductos();
                 return "ProductosList.xhtml";
         }
         return "EditarProducto.xhtml";
@@ -337,20 +338,16 @@ public class Productos implements Serializable {
          this.mem_int= productoEdit.get(0).mem_int;
          this.tipo_meoria= productoEdit.get(0).tipo_meoria;
          this.prec_uni= productoEdit.get(0).prec_uni;
+         this.status=productoEdit.get(0).status;
         
-        System.out.println("nombre"+ this.nombre);
-        System.out.println("precio"+ this.prec_uni);
+       /* System.out.println("nombre"+ this.nombre);
+        System.out.println("precio"+ this.prec_uni);*/
         
          return  productoEdit;
          
     }     
        
-      /* public String process3() throws ClassNotFoundException {
-       EditProducto();
-       return "EditarProducto.xhtml";
-       
-    } */
-   
+     
      public String process2() throws ClassNotFoundException {
          String id;
          id=listProductos.get(0).id_prod;

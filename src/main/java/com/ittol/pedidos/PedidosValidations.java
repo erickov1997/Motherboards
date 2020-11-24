@@ -25,13 +25,7 @@ public class PedidosValidations {
         double precio= (double) l.get(0);
         int  stock= (int) l.get(1);
         String status="";
-        /*Calendar fecha = new GregorianCalendar();                                       
-        String año =String.valueOf(fecha.get(Calendar.YEAR)) ;
-        String mes =String.valueOf(fecha.get(Calendar.MONTH)) ;
-        String dia =String.valueOf( fecha.get(Calendar.DAY_OF_MONTH));
-        //String fechaS=año+"/"+mes+"/"+dia;
-        String fechaS="2020/09/31";*/
-         
+        
         double total=cantidad*precio;
         
           if (cantidad>stock) {

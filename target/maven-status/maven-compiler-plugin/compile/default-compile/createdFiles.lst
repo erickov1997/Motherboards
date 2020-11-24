@@ -1,0 +1,5 @@
+com\ittol\beans\Login.class
+itt\ittol\inventarios\Inventarios.class
+itt\ittol\inventarios\InventariosValidations.class
+com\ittol\users\UsuariosValidations.class
+itt\ittol\inventarios\querys.class

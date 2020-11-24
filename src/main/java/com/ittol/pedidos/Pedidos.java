@@ -142,7 +142,7 @@ public class Pedidos implements Serializable{
           }else if(Integer.parseInt(anio)==Integer.parseInt(año)&& Integer.parseInt(mesU)== Integer.parseInt(mes)){
               if (Integer.parseInt(diaU)<= Integer.parseInt(dia)) {
                   //System.out.println("El dia no pude der menor al actual");
-                  FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_ERROR,"El dia no pude der menor o igual al actual", null);
+                  FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_ERROR,"El dia no pude ser menor o igual al actual", null);
                   FacesContext.getCurrentInstance().addMessage(null, fm);
                   
               }else {
@@ -178,39 +178,6 @@ public class Pedidos implements Serializable{
         
     } 
       public static void main(String[] args) {
-          Calendar fecha = new GregorianCalendar();
-          String año = String.valueOf(fecha.get(Calendar.YEAR));
-          String mes = String.valueOf(fecha.get(Calendar.MONTH) + 1);
-          String dia = String.valueOf(fecha.get(Calendar.DAY_OF_MONTH));
-          String fechaS = año + "/" + mes + "/" + dia;
-          String fechaN="2019/11/11";
-          String anio=fechaN.substring(0,4);
-          String mesU=fechaN.substring(5,7);
-          String diaU=fechaN.substring(8,10);
-          System.out.println("fecha actual: " + fechaS);
-          System.out.println("año: "+anio);
-          System.out.println("mes: " + mesU);
-          System.out.println("dia: "+diaU);
-          
-          int añoEnt= Integer.parseInt(anio) -Integer.parseInt(año);
-          
-          if (Integer.parseInt(anio)<Integer.parseInt(año) ) {
-              System.out.println("El año no pude ser menor al año actual");
-              if(Integer.parseInt(mesU)< Integer.parseInt(mes)){
-               System.out.println("El mes no pude ser menor al mes actual");
-              }
-              
-          }else if(Integer.parseInt(anio)==Integer.parseInt(año)&& Integer.parseInt(mesU)== Integer.parseInt(mes)){
-              if (Integer.parseInt(diaU)<= Integer.parseInt(dia)) {
-                  System.out.println("El dia no pude der menor al actual");
-              }else{
-              System.out.println("Fecha correcta");
-          }
-          }else if(añoEnt>1){
-              System.out.println("Los pedidos solo pueden ralizarse a un maximo de un año");
-          }else{
-              System.out.println("Fecha correcta");
-          }
-         
+        
     }
 }

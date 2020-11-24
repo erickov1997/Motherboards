@@ -127,14 +127,15 @@ public class Usuarios implements Serializable{
          Pattern con = Pattern.compile("^[a-zA-Z0-9-nñáéíóú!¡#$%&{}=?¿\".+-]+$");
          Matcher pass = con.matcher(password);
          
+         String nameuser=new UsuariosValidations().GetNameUser(usuario);;
          
-        if (nombre.equals("")) {
+             if (nombre.equals("")) {
             FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo nombre se encuentra vacio", null);
             FacesContext.getCurrentInstance().addMessage(null, fm);
-        }else if(nombre.length()>40){
+        } else if (nombre.length() > 40) {
             FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "La longitud del campo nombre no debe ser mayor a 40 caracteres", null);
             FacesContext.getCurrentInstance().addMessage(null, fm);
-        }else if(!enom.matches()){
+        } else if (!enom.matches()) {
             FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "No se puede ingresar mas de tres nombres y solo se puede ingresar letras [a-zA-Z] o [ñ á é í ó ú]", null);
             FacesContext.getCurrentInstance().addMessage(null, fm);
         } else if (ape_pat.equals("")) {
@@ -164,7 +165,11 @@ public class Usuarios implements Serializable{
         }else if(usuario.length()>10){
             FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "La longitud del campo usuario no debe ser mayor a 10 caracteres", null);
             FacesContext.getCurrentInstance().addMessage(null, fm);
-        } else if (password.equals("")) {
+        }else if (nameuser.equals(usuario)) {
+            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El usuario ya existe", null);
+            FacesContext.getCurrentInstance().addMessage(null, fm);
+
+        }  else if (password.equals("")) {
             FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo password se encuentra vacio", null);
             FacesContext.getCurrentInstance().addMessage(null, fm);
         }else if (!pass.matches()) {

@@ -332,6 +332,25 @@ public class DBHandler {
         
     }
 
+      public List getUser(String sqlStatement) {
+        List l = null;
+        if (conn != null) {
+            try {
+                PreparedStatement ps = conn.prepareStatement(sqlStatement);
+                ResultSet rs = ps.executeQuery();
+                l = new ArrayList();
+                while (rs.next()) {
+                     l.add(rs.getString("usuario"));
+                   
+                }
+                
+            } catch (SQLException ex) {
+                Logger.getLogger(DBHandler.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return l;
+    }
+     
     public void closeConnection() {
         if (conn != null) {
             try {
