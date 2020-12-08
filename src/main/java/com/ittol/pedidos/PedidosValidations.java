@@ -29,7 +29,7 @@ public class PedidosValidations {
         double total=cantidad*precio;
         
           if (cantidad>stock) {
-              status="Sin productos suficintes";
+              status="Sin productos suficientes";
           }else{
               status="Productos suficientes";
           }

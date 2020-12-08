@@ -109,10 +109,11 @@ public class Pedidos implements Serializable{
          String dia = String.valueOf(fech.get(Calendar.DAY_OF_MONTH));
          String fechaS = año + "/" + mes + "/" + dia;
          //fecha ingresada por el usuario
-          String anio=fecha.substring(0,4);
-          String mesU=fecha.substring(5,7);
-          String diaU=fecha.substring(8,10);
-          int añoEnt= Integer.parseInt(anio) -Integer.parseInt(año);
+         /*String anio = "";
+         String mesU = "";
+         String diaU = "";
+         int añoEnt=0;*/
+
          
          Pattern pat = Pattern.compile("([0-9]){1,3}$");
          Matcher mat = pat.matcher(String.valueOf(cantidad));
@@ -125,16 +126,54 @@ public class Pedidos implements Serializable{
          }else if(fecha.equals("")){
                FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_ERROR,"El campo fecha se encuentra vacio", null);
                FacesContext.getCurrentInstance().addMessage(null, fm);
-           }else if (Integer.parseInt(anio)<Integer.parseInt(año)) {
-             // System.out.println("El año y el mes no pude ser menor al año  y mes actual");           
-               //System.out.println("El mes no pude ser menor al mes actual");
+           }
+         else if (!fecha.equals("")) {
+           String  anio = String.valueOf(fecha.substring(0, 4));
+           String mesU = String.valueOf(fecha.substring(5, 7));
+           String  diaU = String.valueOf(fecha.substring(8, 10));
+           int  añoEnt = Integer.parseInt(anio) - Integer.parseInt(año);
+          
+           if (Integer.parseInt(anio) < Integer.parseInt(año)) {
+            
+               FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_ERROR,"El año no pude ser menor al año actual", null);
+               FacesContext.getCurrentInstance().addMessage(null, fm);
+          }else if (Integer.parseInt(anio)==Integer.parseInt(año) && Integer.parseInt(mesU)< Integer.parseInt(mes) ) {
+             
+               FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_ERROR,"El mes no pude ser menor al mes actual", null);
+               FacesContext.getCurrentInstance().addMessage(null, fm);
+          }else if(Integer.parseInt(anio)==Integer.parseInt(año)&& Integer.parseInt(mesU)== Integer.parseInt(mes)){
+              if (Integer.parseInt(diaU)<= Integer.parseInt(dia)) {
+                  //System.out.println("El dia no pude der menor al actual");
+                  FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_ERROR,"El dia no pude ser menor o igual al actual", null);
+                  FacesContext.getCurrentInstance().addMessage(null, fm);
+                  
+              }else {
+               FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_INFO,"Pedido registrado correctamente",null);
+               FacesContext.getCurrentInstance().addMessage(null, fm);
+                 new PedidosValidations().InsertPedido(id_prod,Integer.parseInt(cantidad),fecha);
+           }
+          
+          }else if(añoEnt>1){
+              //System.out.println("Los pedidos solo pueden ralizarse a un maximo de un año");
+              FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_ERROR,"Los pedidos solo pueden ralizarse a un maximo de un año", null);
+              FacesContext.getCurrentInstance().addMessage(null, fm);
+          }
+           else if(añoEnt==1){
+             FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_INFO,"Pedido registrado correctamente",null);
+               FacesContext.getCurrentInstance().addMessage(null, fm);
+                 new PedidosValidations().InsertPedido(id_prod,Integer.parseInt(cantidad),fecha);
+          }
+           
+           
+           
+         } /*else if (Integer.parseInt(anio) < Integer.parseInt(año)) {
+            
                FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_ERROR,"El año no pude ser menor al año actual", null);
                FacesContext.getCurrentInstance().addMessage(null, fm);
                
               
           }else if (Integer.parseInt(anio)==Integer.parseInt(año) && Integer.parseInt(mesU)< Integer.parseInt(mes) ) {
-             // System.out.println("El año y el mes no pude ser menor al año  y mes actual");           
-               //System.out.println("El mes no pude ser menor al mes actual");
+             
                FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_ERROR,"El mes no pude ser menor al mes actual", null);
                FacesContext.getCurrentInstance().addMessage(null, fm);
                
@@ -148,17 +187,17 @@ public class Pedidos implements Serializable{
               }else {
                FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_INFO,"Pedido registrado correctamente",null);
                FacesContext.getCurrentInstance().addMessage(null, fm);
-                 new PedidosValidations().InsertPedido(id_prod,Integer.parseInt(cantidad),fechaS);
+                 new PedidosValidations().InsertPedido(id_prod,Integer.parseInt(cantidad),fecha);
            }
           }else if(añoEnt>1){
               //System.out.println("Los pedidos solo pueden ralizarse a un maximo de un año");
               FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_ERROR,"Los pedidos solo pueden ralizarse a un maximo de un año", null);
               FacesContext.getCurrentInstance().addMessage(null, fm);
-          } else {
+          }*//*else {
                FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_INFO,"Pedido registrado correctamente",null);
                FacesContext.getCurrentInstance().addMessage(null, fm);
-                 new PedidosValidations().InsertPedido(id_prod,Integer.parseInt(cantidad),fechaS);
-           }
+                 new PedidosValidations().InsertPedido(id_prod,Integer.parseInt(cantidad),fecha);
+           }*/
           
            
             
@@ -178,6 +217,16 @@ public class Pedidos implements Serializable{
         
     } 
       public static void main(String[] args) {
-        
+         /*String fecha="2020/12/03";
+         String n=fecha.substring(5,6);
+          System.out.println(n);
+          String año="3";
+           String anio=String.valueOf(fecha.substring(0,4));
+          String mesU=String.valueOf(fecha.substring(5,7));
+          String diaU=String.valueOf(fecha.substring(8,10));
+          System.out.println(anio);
+          System.out.println(diaU);
+          System.out.println(mesU);
+         int añoEnt= Integer.parseInt(anio) -Integer.parseInt(año);*/
     }
 }

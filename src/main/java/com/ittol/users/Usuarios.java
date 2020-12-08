@@ -132,8 +132,8 @@ public class Usuarios implements Serializable{
              if (nombre.equals("")) {
             FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo nombre se encuentra vacio", null);
             FacesContext.getCurrentInstance().addMessage(null, fm);
-        } else if (nombre.length() > 40) {
-            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "La longitud del campo nombre no debe ser mayor a 40 caracteres", null);
+        } else if (nombre.length() > 25) {
+            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "La longitud del campo nombre no debe ser mayor a 25 caracteres", null);
             FacesContext.getCurrentInstance().addMessage(null, fm);
         } else if (!enom.matches()) {
             FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "No se puede ingresar mas de tres nombres y solo se puede ingresar letras [a-zA-Z] o [ñ á é í ó ú]", null);

@@ -53,12 +53,12 @@
                 <h:form class="fdatos">
                    
                     <div class="datos_prov">
-                        <h:inputText class="form-control dato" a:placeholder="Codigo" value="#{appProduct.id_prod}" maxlength="5" />
+                        <h:inputText class="form-control dato" a:placeholder="Código" value="#{appProduct.id_prod}" maxlength="5" />
               
                         <h:inputText class="form-control dato" a:placeholder="Nombre" maxlength="30" value="#{appProduct.nombre}"/>
 
                         
-                        -<h:selectOneMenu class="form-control dato" value = "#{appProduct.tipo}" >
+                        <h:selectOneMenu class="form-control dato" value = "#{appProduct.tipo}" >
                             <f:selectItem itemValue = "---Tipo---" itemLabel = "---Tipo---" /> 
                             <f:selectItem itemValue = " ATX" itemLabel = " ATX" /> 
                             <f:selectItem itemValue = "micro ATX" itemLabel = "micro ATX" /> 

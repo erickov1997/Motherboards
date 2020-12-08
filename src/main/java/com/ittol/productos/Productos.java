@@ -190,23 +190,23 @@ public class Productos implements Serializable {
             String cprod=prod.ConsultIdProd(id_prod);
            
             if (id_prod.equals("")) {
-                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo codigo se encuentra vacio", null);
+                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo código se encuentra vacío", null);
                 FacesContext.getCurrentInstance().addMessage(null, fm);
             }else if(cprod.equals(id_prod)){
-                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El codigo ya existe", null);
+                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El código ya existe", null);
                 FacesContext.getCurrentInstance().addMessage(null, fm);
             
             } else if (!eat.matches()) {
-                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo codigo solo pude contener letras [A-Z a-z] a excepcion de [ñ] o numeros [0-9] y sin espacios", null);
+                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo código solo pude contener letras [A-Z a-z] a excepcion de [ñ] y/o numeros [0-9] y sin espacios", null);
                 FacesContext.getCurrentInstance().addMessage(null, fm);
             } else if (id_prod.length()!= 5) {
-                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo codigo debe contener 5 caracteres", null);
+                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo código debe contener 5 caracteres", null);
                 FacesContext.getCurrentInstance().addMessage(null, fm);
             } else if(nombre.equals("")){
-                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo nombre se encuentra vacio", null);
+                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo nombre se encuentra vacío", null);
                 FacesContext.getCurrentInstance().addMessage(null, fm);
             }else if (!nom.matches()) {
-                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo nombre solo pude contener letras [A-Z a-z] o [á é í ó ú] o numeros [0-9] ", null);
+                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo nombre solo pude contener letras [A-Z a-z] o [á é í ó ú] y/o números [0-9] ", null);
                 FacesContext.getCurrentInstance().addMessage(null, fm);
             } else if(nombre.length()>30){
                 FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo nombre no puede contener mas de 30 caracteres", null);
@@ -232,10 +232,10 @@ public class Productos implements Serializable {
                 FacesContext.getCurrentInstance().addMessage(null, fm);
             }
             else if(prec_uni.equals("")){
-                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo precio unitario se encuentra vacio", null);
+                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo precio unitario se encuentra vacío", null);
                 FacesContext.getCurrentInstance().addMessage(null, fm);
             }else if(!prec.matches()){
-                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo precio unitario solo puede contener numeros enteros o decimales", null);
+                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo precio unitario solo puede contener números enteros o decimales", null);
                 FacesContext.getCurrentInstance().addMessage(null, fm);
             }else {
                 FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_INFO, "Producto registrado correctamente", null);
