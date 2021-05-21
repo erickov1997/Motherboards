@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" ></link>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"></link>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous"></link>
+    <link rel="stylesheet" href="../public/estilos/styles.css"></link>
+     <link rel="stylesheet" href="../../../public/estilos/styles.css"></link>
+  
+
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js" />
+        <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" />
+        <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" />
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+        <nav>
+            <span class="title">Motherboards</span>
+            <div class="listas">
+                 <ul class="nav">
+                 <h:form class="navf">
+                        <li><h:commandLink action="/secured/user/Almacen/Almacen.xhtml" class="navli">Almacen</h:commandLink> </li>
+                         <li><h:commandLink action="/secured/user/Productos/Productos.xhtml" class="navli">Productos</h:commandLink></li>
+                         <li><h:commandLink action="AgrPedido.xhtml" class="navli">Pedido</h:commandLink> </li>
+                          <li><h:commandLink action="/secured/user/Inventarios/Inventario.xhtml" class="navli">Inventario</h:commandLink> </li>
+                     </h:form>
+                
+            </ul>
+            <ul class="sesion">
+                <h:form class="navf">
+                 <li><h:commandLink action="/index.xhtml" class="navli">Cerrar sesión</h:commandLink> </li>
+                </h:form>
+            </ul>
+            </div>
+            
+           
+        </nav>
+        
+        <div class="contenedor">
+            <div class="menu-lateral">
+                <ul class="menu-prov">
+                     <h:form >
+                        <li><h:commandLink action="AgrPedido.xhtml" class="navli">Agregar Pedido</h:commandLink> </li>
+                        <li><h:commandLink action="#{appPedido.process()}" class="navli">Consultar pedido</h:commandLink> </li>                       
+                    </h:form>
+                </ul>
+                
+            </div>
+            <div class="contenido">
+                <h1>Registrar Pedido</h1>
+                
+                <h:form class="fdatos">
+                    <h:messages errorStyle="color:red;width:auto;text-align:center;background:#f8d7da;border-radius:5px; box-shadow: 0 1px 3px rgba(0,0,0,.5);padding:10px;margin-left:25%;margin-right:25%;margin-top:20px"
+                            infoStyle="color:green;width:auto;text-align:center;background:#d4edda;border-radius:5px; box-shadow: 0 1px 3px rgba(0,0,0,.5);padding:10px;margin-left:25%;margin-right:25%;margin-top:20px"/>
+                    <div class="datos_prov">
+                      
+                        <h:selectOneMenu id="almc" class="form-control dato" value="#{appPedido.id_prod}" required="true" requiredMessage="Debe seleccionar un producto" >
+                           <f:selectItem itemLabel="---Producto----" />
+                           <f:selectItems  value="#{appInv.listidProd}"/>    
+                       </h:selectOneMenu>
+                        
+                        <h:inputText class="form-control dato" a:placeholder="cantidad" maxlength="3"  autocomplete="off" value="#{appPedido.cantidad}"/>
+                        <h:inputText  styleClass="form-control datepicker dato" autocomplete="off" a:placeholder="fecha de entrega" value="#{appPedido.fecha}"  />
+           
+                    </div>
+                   
+                    <div class="botonagr">
+                        <h:commandButton class="btn btn-primary agrProd" value="Registrar" action="#{appPedido.agrPedido()}"></h:commandButton>
+                    </div>
+                    
+                </h:form>
+                <script type="text/javascript" language="javascript">
+                    $(document).ready(function(){
+                        $(".datepicker").datepicker({
+                            dateFormat:'yy/mm/dd',
+                            changeMonth:true,
+                            changeYear:true,
+                            yearRange:'2020:2025'
+                        });
+                    });
+                </script>
+            </div>
+        </div>
+    </h:body>
+
+</html>
+

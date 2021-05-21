@@ -6,6 +6,7 @@
 package com.ittol.beans;
 
 import com.ittol.almacen.Almacen;
+import com.ittol.almacen.PedidoWs;
 import com.ittol.pedidos.Pedidos;
 import com.ittol.productos.Productos;
 import com.ittol.users.Usuarios;
@@ -97,13 +98,14 @@ public class DBHandler {
                 while (rs.next()) {
                      
                     Usuarios user = new Usuarios();
-                    user.setId(String.valueOf(rs.getInt("id_usuario")) );
+                    user.setId(String.valueOf(rs.getInt("id_user")) );
                     user.setNombre(rs.getString("nombre"));
                     user.setApe_pat(rs.getString("ape_pat"));
                     user.setApe_mat(rs.getString("ape_mat"));
                     user.setUsuario(rs.getString("usuario"));
                     user.setPassword(rs.getString("password"));
-                    user.setTipo(rs.getString("tipo"));
+                    user.setTipo(rs.getString("rol"));
+                   
 
                     u.add(user);
                 }
@@ -121,7 +123,7 @@ public class DBHandler {
                 ResultSet rs = ps.executeQuery();
                 l = new ArrayList();
                 while (rs.next()) {
-                     l.add(rs.getString("id_usuario"));
+                     l.add(rs.getString("id_user"));
                    
                 }
             } catch (SQLException ex) {
@@ -148,7 +150,7 @@ public class DBHandler {
                      prod.setTipo_meoria(rs.getString("tipo_meoria"));
                      prod.setPrec_uni(rs.getString("prec_uni"));
                      prod.setAlmacen(rs.getString("almacen"));
-                     prod.setStock(rs.getInt("stock"));
+                     prod.setStock(rs.getString("stock"));
                      prod.setVendidos(rs.getInt("cant_vent"));
                      prod.setStatus(rs.getString("status"));
                      
@@ -219,12 +221,12 @@ public class DBHandler {
                 while (rs.next()) {
                     
                      Pedidos pedido = new Pedidos();
-                     pedido.setId_pedido(rs.getInt("id_pedido"));
-                     pedido.setId_prod(rs.getString("id_prod"));
+                     //pedido.setIdPedido(rs.getInt("id_pedido"));
+                     pedido.setId_prod(rs.getString("producto"));
                      pedido.setCantidad(rs.getString("cantidad"));
-                     pedido.setTotal(rs.getDouble("total")); 
-                     pedido.setStatus(rs.getString("status"));
+                     pedido.setTotal(rs.getString("total")); 
                      pedido.setFecha(rs.getString("fecha"));
+                     pedido.setStatus(rs.getString("status"));
                      l.add(pedido);
                 }
             } catch (SQLException ex) {
@@ -271,7 +273,48 @@ public class DBHandler {
                 while (rs.next()) {
                     l.add(rs.getDouble("prec_uni"));
                     l.add(rs.getInt("stock"));
+                    
+                    
                      
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(DBHandler.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return l;
+    }
+      
+      public List GetProdPed(String sqlStatement) {
+        List l = null;
+        if (conn != null) {
+            try {
+                PreparedStatement ps = conn.prepareStatement(sqlStatement);
+                ResultSet rs = ps.executeQuery();
+                l = new ArrayList();
+                while (rs.next()) {
+                   l.add(rs.getString("id_prod"));
+                    l.add(rs.getString("stock"));
+                    l.add(rs.getString("prec_uni"));
+                   
+                     
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(DBHandler.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return l;
+    }
+      
+    public List GetPed(String sqlStatement) {
+        List l = null;
+        if (conn != null) {
+            try {
+                PreparedStatement ps = conn.prepareStatement(sqlStatement);
+                ResultSet rs = ps.executeQuery();
+                l = new ArrayList();
+                while (rs.next()) {
+                   l.add(rs.getString("producto"));
+                    l.add(rs.getString("cantidad"));
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(DBHandler.class.getName()).log(Level.SEVERE, null, ex);

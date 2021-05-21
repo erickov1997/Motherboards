@@ -80,11 +80,11 @@ public class Salidas implements Serializable {
            Pattern pat = Pattern.compile("([0-9]){1,3}$");
             Matcher mat = pat.matcher(String.valueOf(cantidad));
           if(String.valueOf(cantidad).equals("")){
-               FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_ERROR,"El campo cantidad se encuentra vacio", null);
+               FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_ERROR,"El campo cantidad se encuentra vacío", null);
                FacesContext.getCurrentInstance().addMessage(null, fm);
            }
            else if(!mat.matches()){
-               FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_ERROR,"El campo cantidad solo puede contener numeros [0-9] y como un maximo de 3 digitos", null);
+               FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_ERROR,"El campo cantidad solo puede contener números [0-9] y como un máximo de 3 dígitos", null);
                FacesContext.getCurrentInstance().addMessage(null, fm);
            }/*else if(fecha.equals("")){
                FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_ERROR,"El campo fecha se encuentra vacio", null);

@@ -27,11 +27,11 @@ public class Pedidos implements Serializable{
    private int id_pedido;
    private String id_prod;
    private String cantidad;
-   private double total;
+   private String total;
    private String status;
-   String fecha;
+   private String fecha;
    private List<Pedidos> listPedidos;
-
+   
     public int getId_pedido() {
         return id_pedido;
     }
@@ -49,13 +49,6 @@ public class Pedidos implements Serializable{
         this.id_prod = id_prod;
     }
 
-   /* public int getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
-    }*/
 
     public String getCantidad() {
         return cantidad;
@@ -67,11 +60,11 @@ public class Pedidos implements Serializable{
     
     
 
-    public double getTotal() {
+    public String getTotal() {
         return total;
     }
 
-    public void setTotal(double total) {
+    public void setTotal(String total) {
         this.total = total;
     }
 
@@ -108,23 +101,18 @@ public class Pedidos implements Serializable{
          String mes = String.valueOf(fech.get(Calendar.MONTH) + 1);
          String dia = String.valueOf(fech.get(Calendar.DAY_OF_MONTH));
          String fechaS = año + "/" + mes + "/" + dia;
-         //fecha ingresada por el usuario
-         /*String anio = "";
-         String mesU = "";
-         String diaU = "";
-         int añoEnt=0;*/
-
+         
          
          Pattern pat = Pattern.compile("([0-9]){1,3}$");
          Matcher mat = pat.matcher(String.valueOf(cantidad));
          if (String.valueOf(cantidad).equals("")) {
-             FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo cantidad se encuentra vacio", null);
+             FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo cantidad se encuentra vacío", null);
              FacesContext.getCurrentInstance().addMessage(null, fm);
          } else if (!mat.matches()) {
-             FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo cantidad solo puede contener numeros [0-9] y como un maximo de 3 digitos", null);
+             FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo cantidad solo puede contener números [0-9] y como un máximo de 3 dígitos", null);
              FacesContext.getCurrentInstance().addMessage(null, fm);
          }else if(fecha.equals("")){
-               FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_ERROR,"El campo fecha se encuentra vacio", null);
+               FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_ERROR,"El campo fecha se encuentra vacío", null);
                FacesContext.getCurrentInstance().addMessage(null, fm);
            }
          else if (!fecha.equals("")) {
@@ -144,7 +132,7 @@ public class Pedidos implements Serializable{
           }else if(Integer.parseInt(anio)==Integer.parseInt(año)&& Integer.parseInt(mesU)== Integer.parseInt(mes)){
               if (Integer.parseInt(diaU)<= Integer.parseInt(dia)) {
                   //System.out.println("El dia no pude der menor al actual");
-                  FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_ERROR,"El dia no pude ser menor o igual al actual", null);
+                  FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_ERROR,"El día no pude ser menor o igual al actual", null);
                   FacesContext.getCurrentInstance().addMessage(null, fm);
                   
               }else {
@@ -155,7 +143,7 @@ public class Pedidos implements Serializable{
           
           }else if(añoEnt>1){
               //System.out.println("Los pedidos solo pueden ralizarse a un maximo de un año");
-              FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_ERROR,"Los pedidos solo pueden ralizarse a un maximo de un año", null);
+              FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_ERROR,"Los pedidos solo pueden realizarse a un máximo de un año", null);
               FacesContext.getCurrentInstance().addMessage(null, fm);
           }
            else if(añoEnt==1){
@@ -166,56 +154,32 @@ public class Pedidos implements Serializable{
            
            
            
-         } /*else if (Integer.parseInt(anio) < Integer.parseInt(año)) {
-            
-               FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_ERROR,"El año no pude ser menor al año actual", null);
-               FacesContext.getCurrentInstance().addMessage(null, fm);
-               
-              
-          }else if (Integer.parseInt(anio)==Integer.parseInt(año) && Integer.parseInt(mesU)< Integer.parseInt(mes) ) {
-             
-               FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_ERROR,"El mes no pude ser menor al mes actual", null);
-               FacesContext.getCurrentInstance().addMessage(null, fm);
-               
-              
-          }else if(Integer.parseInt(anio)==Integer.parseInt(año)&& Integer.parseInt(mesU)== Integer.parseInt(mes)){
-              if (Integer.parseInt(diaU)<= Integer.parseInt(dia)) {
-                  //System.out.println("El dia no pude der menor al actual");
-                  FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_ERROR,"El dia no pude ser menor o igual al actual", null);
-                  FacesContext.getCurrentInstance().addMessage(null, fm);
-                  
-              }else {
-               FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_INFO,"Pedido registrado correctamente",null);
-               FacesContext.getCurrentInstance().addMessage(null, fm);
-                 new PedidosValidations().InsertPedido(id_prod,Integer.parseInt(cantidad),fecha);
-           }
-          }else if(añoEnt>1){
-              //System.out.println("Los pedidos solo pueden ralizarse a un maximo de un año");
-              FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_ERROR,"Los pedidos solo pueden ralizarse a un maximo de un año", null);
-              FacesContext.getCurrentInstance().addMessage(null, fm);
-          }*//*else {
-               FacesMessage fm= new FacesMessage(FacesMessage.SEVERITY_INFO,"Pedido registrado correctamente",null);
-               FacesContext.getCurrentInstance().addMessage(null, fm);
-                 new PedidosValidations().InsertPedido(id_prod,Integer.parseInt(cantidad),fecha);
-           }*/
+         } 
           
            
             
     }  
      
-     public List<Pedidos> ConsultPedidos() throws ClassNotFoundException{
+    /* public List<Pedidos> ConsultPedidos() throws ClassNotFoundException{
        
-         listPedidos= new PedidosValidations().listaPedidos();   
          return  listPedidos;
          
-    }   
+    } */  
     
       public String process() throws ClassNotFoundException {
+        //ConsultPedidos();
+        new PedidosValidations().listaPedidos();
         ConsultPedidos();
         return "Pedidos.xhtml";
        
         
-    } 
+    }
+      
+     public List<Pedidos> ConsultPedidos() throws ClassNotFoundException{
+         listPedidos= new PedidosValidations().ConsultarPedidos();   
+         return   listPedidos;      
+    }    
+      
       public static void main(String[] args) {
          /*String fecha="2020/12/03";
          String n=fecha.substring(5,6);

@@ -40,7 +40,8 @@ public class Productos implements Serializable {
     private String prec_uni;
     private String almacen;
     private String status;
-    private int stock;
+   // private int stock;
+    private String stock; 
     private int vendidos;
     private List<Productos> listProductos;
     private List<Productos> productoEdit;
@@ -113,13 +114,23 @@ public class Productos implements Serializable {
         this.almacen = almacen;
     }
 
-    public int getStock() {
+    /*public int getStock() {
         return stock;
     }
 
     public void setStock(int stock) {
         this.stock = stock;
+    }*/
+
+    public String getStock() {
+        return stock;
     }
+
+    public void setStock(String stock) {
+        this.stock = stock;
+    }
+    
+    
 
     public int getVendidos() {
         return vendidos;
@@ -184,8 +195,11 @@ public class Productos implements Serializable {
             Pattern cat = Pattern.compile("[a-zA-Z ñ 0-9 á é í ó ú]*$");
             Matcher nom = cat.matcher(nombre);
             
-            Pattern p = Pattern.compile( "^[1-9]\\d*(\\.\\d+)?$");
+            Pattern p = Pattern.compile( "^[1-9]\\d*(\\.\\d{1,2})$");
             Matcher prec = p.matcher(prec_uni); 
+            
+            Pattern pat = Pattern.compile("([0-9]){1,3}$");
+            Matcher can = pat.matcher(String.valueOf(stock));
             
             String cprod=prod.ConsultIdProd(id_prod);
            
@@ -197,7 +211,7 @@ public class Productos implements Serializable {
                 FacesContext.getCurrentInstance().addMessage(null, fm);
             
             } else if (!eat.matches()) {
-                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo código solo pude contener letras [A-Z a-z] a excepcion de [ñ] y/o numeros [0-9] y sin espacios", null);
+                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo código solo pude contener letras [A-Z a-z] a excepcion de [ñ] y/o números [0-9] y sin espacios", null);
                 FacesContext.getCurrentInstance().addMessage(null, fm);
             } else if (id_prod.length()!= 5) {
                 FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo código debe contener 5 caracteres", null);
@@ -235,14 +249,20 @@ public class Productos implements Serializable {
                 FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo precio unitario se encuentra vacío", null);
                 FacesContext.getCurrentInstance().addMessage(null, fm);
             }else if(!prec.matches()){
-                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo precio unitario solo puede contener números enteros o decimales", null);
+                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo precio unitario debe ser en formato decimal y con un maximo de dos decimales ejemplo: 12.0 , 122.12 ", null);
+                FacesContext.getCurrentInstance().addMessage(null, fm);
+            }else if(stock.equals("")){
+                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo stock se encuentra vacío", null);
+                FacesContext.getCurrentInstance().addMessage(null, fm);
+            }else if(!can.matches()){
+                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo stock solo puede contener números [0-9] y como un máximo de 3 dígitos ", null);
                 FacesContext.getCurrentInstance().addMessage(null, fm);
             }else {
                 FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_INFO, "Producto registrado correctamente", null);
                 FacesContext.getCurrentInstance().addMessage(null, fm);
                 double precio = Double.parseDouble(prec_uni);
                 int almc = Integer.parseInt(almacen);
-                new ProductosValidations().InsertProduct(id_prod, nombre, tipo, fam_proc, mem_int, tipo_meoria, precio, almc,status);
+                new ProductosValidations().InsertProduct(id_prod, nombre, tipo, fam_proc, mem_int, tipo_meoria, precio, almc,status,stock);
                 id_prod="";
                 nombre="";
                 tipo="---Tipo---";
@@ -252,6 +272,7 @@ public class Productos implements Serializable {
                 almacen="---Almacen----";
                 status="---Status---";
                 prec_uni="";
+                stock="";
             }
 
 
@@ -264,9 +285,12 @@ public class Productos implements Serializable {
             Matcher eat = cod.matcher(id_prod);
             Pattern cat = Pattern.compile("[a-zA-Z ñ 0-9 á é í ó ú]*$");
             Matcher nom = cat.matcher(nombre);
-            
-            Pattern p = Pattern.compile( "^[1-9]\\d*(\\.\\d+)?$");
-            Matcher prec = p.matcher(prec_uni);  
+          
+            //Pattern p = Pattern.compile( "^[1-9]\\d*(\\.\\d+)?$");
+            Pattern p = Pattern.compile( "^[1-9]\\d*(\\.\\d{1,2})$");
+            Matcher prec = p.matcher(prec_uni);
+            Pattern d = Pattern.compile( "^([0-9])+[.]?([0-9]){1,2}?$");
+            Matcher dec = p.matcher(prec_uni);
          
       if(nombre.equals("")){
                 FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo nombre se encuentra vacio", null);
@@ -293,9 +317,12 @@ public class Productos implements Serializable {
                 FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo precio unitario se encuentra vacio", null);
                 FacesContext.getCurrentInstance().addMessage(null, fm);
             }else if(!prec.matches()){
-                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo precio unitario solo puede contener numeros enteros o decimales", null);
+                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo precio unitario debe ser en formato decimal y con un maximo de dos decimales ejemplo: 12.0 , 122.12", null);
                 FacesContext.getCurrentInstance().addMessage(null, fm);
-            }else if(status.equals("---Status---")){
+            }/*else if(!dec.matches()){
+                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El campo precio unitario solo puede contener 2 decimales", null);
+                FacesContext.getCurrentInstance().addMessage(null, fm);
+            }*/else if(status.equals("---Status---")){
                 FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Debe seleccionar el status", null);
                 FacesContext.getCurrentInstance().addMessage(null, fm);
             }else {
@@ -379,13 +406,13 @@ public class Productos implements Serializable {
         almacen.setNombre("");
         almacen.setDescripcion("");
         almacen.setDireccion("");
-        return "/Almacen/Almacen.xhtml";
+        return "/secured/user/Almacen/Almacen.xhtml";
     }   
     
     public String linkinventario() throws ClassNotFoundException{
     Inventarios inv= new Inventarios();
     inv.ConsultInventario();
-    return "/Inventarios/Inventario.xhtml";
+    return "/secured/user/Inventarios/Inventario.xhtml";
     }
        
        

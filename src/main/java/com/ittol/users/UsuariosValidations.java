@@ -16,17 +16,24 @@ import java.util.logging.Logger;
  * @author Erick
  */
 public class UsuariosValidations {
-    public void InsertUusario(String nombre, String ape_pat,String ape_mat,String usuario,String password,String tipo) throws ClassNotFoundException{
+    public void InsertUsuario(String nombre, String ape_pat,String ape_mat,String usuario,String password,String rol) throws ClassNotFoundException{
         DBHandler handler = new DBHandler();
         handler.getConnection();
-        handler.executeInsert("INSERT INTO usuarios(nombre,ape_pat,ape_mat,usuario,password,tipo) "+ "VALUES('"+nombre+"','"+ape_pat+"','"+ape_mat+"','"+usuario+"','"+password+"','"+tipo+"')");
+        handler.executeInsert("INSERT INTO users(nombre,ape_pat,ape_mat,usuario,password,rol) "+
+                "VALUES('"+nombre+"','"+ape_pat+"','"+ape_mat+"','"+usuario+"','"+password+"','"+rol+"')");
+    }
+    
+    public void Insertrol(String usuario,String rol) throws ClassNotFoundException{
+        DBHandler handler = new DBHandler();
+        handler.getConnection();
+        handler.executeInsert("INSERT INTO user_role(usuario,userrole) "+ "VALUES('"+usuario+"','"+rol+"')");
     }
     
      public List ListUsers() throws ClassNotFoundException{
         List<Usuarios> listUser;
         DBHandler handler = new DBHandler();
         handler.getConnection();
-        listUser = handler.UserList("SELECT * FROM usuarios");
+        listUser = handler.UserList("SELECT * FROM users");
         System.out.println("usuarios: "+listUser);
         return listUser;
     }
@@ -42,15 +49,17 @@ public class UsuariosValidations {
     public List UserEditId(int id_usuario) throws ClassNotFoundException{
         DBHandler handler = new DBHandler();
         handler.getConnection();
-        List lst = handler.UserList("SELECT * FROM usuarios WHERE id_usuario='"+id_usuario+"'");
+        List lst = handler.UserList("SELECT * FROM users WHERE id_user='"+id_usuario+"'");
         System.out.println("Productoslist: "+lst);
         return lst;
     }  
     
-    public void Editar(int id_usuario,String nombre,String ape_pat,String ape_mat,String usuario,String password,String tipo) throws ClassNotFoundException{
+    public void Editar(int id_usuario,String nombre,String ape_pat,String ape_mat,String usuario,String tipo) throws ClassNotFoundException{
         DBHandler handler = new DBHandler();
         handler.getConnection();
-        handler.executeInsert("UPDATE usuarios SET nombre='"+nombre+"', ape_pat='"+ape_pat+"',ape_mat='"+ape_mat+"',usuario='"+usuario+"',password='"+password+"',tipo='"+tipo+"' WHERE id_usuario='"+id_usuario+"'");  
+        handler.executeInsert("UPDATE users SET nombre='"+nombre+"', ape_pat='"+ape_pat+"',ape_mat='"+ape_mat+"',usuario='"+usuario+"',rol='"+tipo+"' WHERE id_user='"+id_usuario+"'");  
+        handler.executeInsert("UPDATE user_role SET usuario='"+usuario+"',userrole='"+tipo+"' WHERE id_role='"+id_usuario+"'");  
+
     }
      
     public void DeleteUser(String id_user){
@@ -60,14 +69,15 @@ public class UsuariosValidations {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(UsuariosValidations.class.getName()).log(Level.SEVERE, null, ex);
         }
-    handler.executeInsert("DELETE FROM usuarios WHERE id_usuario='"+id_user+"'");
+    handler.executeInsert("DELETE FROM users WHERE id_user='"+id_user+"'");
+     handler.executeInsert("DELETE FROM user_role WHERE id_role='"+id_user+"'");
     }
     
     
      public String GetNameUser(String usuario) throws ClassNotFoundException{
         DBHandler handler = new DBHandler(); 
         handler.getConnection();
-        List user=handler.getUser("SELECT usuario FROM usuarios WHERE usuario ='" + usuario + "'");      
+        List user=handler.getUser("SELECT usuario FROM users WHERE usuario ='" + usuario + "'");      
          if (user.size() == 0) {
              return "";
          } else {

@@ -69,6 +69,44 @@ public class querys {
         return l;
     }
      
+    public List Pedido(String sqlStatement) {
+        List l = null;
+        if (conn != null) {
+            try {
+                PreparedStatement ps = conn.prepareStatement(sqlStatement);
+                ResultSet rs = ps.executeQuery();
+                l = new ArrayList();
+                while (rs.next()) {
+                     l.add(rs.getString("cantidad"));
+                   
+                }
+                
+            } catch (SQLException ex) {
+                Logger.getLogger(DBHandler.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return l;
+    }
+     
+    public List Pedido2(String sqlStatement) {
+        List l = null;
+        if (conn != null) {
+            try {
+                PreparedStatement ps = conn.prepareStatement(sqlStatement);
+                ResultSet rs = ps.executeQuery();
+                l = new ArrayList();
+                while (rs.next()) {
+                    l.add(rs.getString("id_pedido"));
+                     l.add(rs.getString("cantidad"));
+                   
+                }
+                
+            } catch (SQLException ex) {
+                Logger.getLogger(DBHandler.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return l;
+    }
       public List CantProd(String sqlStatement) {
         List l = null;
         

@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      >
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"></link>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous"></link>
+    <link rel="stylesheet" href="../public/estilos/styles.css"></link>
+    <link rel="stylesheet" href="../../../public/estilos/styles.css"></link>
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+         <nav>
+            <span class="title">Motherboards</span>
+            <div class="listas">
+                 <ul class="nav">
+                     <h:form class="navf">
+                         <li><h:commandLink action="#{appProduct.linkalmacen()}" class="navli">Almacen</h:commandLink> </li>
+                         <li><h:commandLink action="Productos.xhtml" class="navli">Productos</h:commandLink></li>
+                         <li><h:commandLink action="/secured/user/Pedidos/Pedidos.xhtml" class="navli">Pedido</h:commandLink> </li>
+                         <li><h:commandLink action="#{appProduct.linkinventario()}" class="navli">Inventario</h:commandLink> </li>
+                     </h:form>
+               
+            </ul>
+            <ul class="sesion">
+               <h:form class="navf">
+                 <li><h:commandLink action="#{appLogin.logout()}" class="navli">Cerrar sesión</h:commandLink> </li>
+                </h:form>
+            </ul>
+            </div>
+            
+           
+        </nav>
+        
+        <div class="contenedor">
+            <div class="menu-lateral">
+                <ul class="menu-prov">
+                    
+                    <h:form >
+                        <li><h:commandLink action="Productos" class="navli">Agregar</h:commandLink> </li>
+                        <li><h:commandLink action="#{appProduct.process()}" class="navli">Lista de Productos</h:commandLink> </li>
+                    </h:form>
+                </ul>
+                
+            </div>
+            <div class="contenido">
+                <h1>Agregar Productos</h1>
+                 <h:messages errorStyle="color:red;width:auto;text-align:center;background:#f8d7da;border-radius:5px; box-shadow: 0 1px 3px rgba(0,0,0,.5);padding:10px;margin-left:25%;margin-right:25%;margin-top:20px"
+                            infoStyle="color:green;width:auto;text-align:center;background:#d4edda;border-radius:5px; box-shadow: 0 1px 3px rgba(0,0,0,.5);padding:10px;margin-left:25%;margin-right:25%;margin-top:20px"/>
+                <h:form class="fdatos">
+                   
+                    <div class="datos_prov">
+                        <h:inputText class="form-control dato" a:placeholder="Código" value="#{appProduct.id_prod}" maxlength="5" />
+              
+                        <h:inputText class="form-control dato" a:placeholder="Nombre" maxlength="30" value="#{appProduct.nombre}"/>
+
+                        
+                        <h:selectOneMenu class="form-control dato" value = "#{appProduct.tipo}" >
+                            <f:selectItem itemValue = "---Tipo---" itemLabel = "---Tipo---" /> 
+                            <f:selectItem itemValue = " ATX" itemLabel = " ATX" /> 
+                            <f:selectItem itemValue = "micro ATX" itemLabel = "micro ATX" /> 
+                            <f:selectItem itemValue = "Flex ATX" itemLabel = "Flex ATX" /> 
+                        </h:selectOneMenu> 
+
+                        <h:selectOneMenu class="form-control dato" value = "#{appProduct.fam_proc}" >
+                            <f:selectItem itemValue = "---Familia de Procesador---" itemLabel = "---Familia de Procesador---" /> 
+                            <f:selectItem itemValue = "AMD" itemLabel = "AMD" /> 
+                            <f:selectItem itemValue = "Intel" itemLabel = "INTEL" /> 
+                        </h:selectOneMenu> 
+                        
+                        <h:selectOneMenu class="form-control dato" value = "#{appProduct.mem_int}"  >
+                            <f:selectItem itemValue = "---Memoria Interna---" itemLabel = "---Memoria Interna---" /> 
+                            <f:selectItem itemValue = "32 GB" itemLabel = "32 GB" /> 
+                            <f:selectItem itemValue = "64 GB" itemLabel = "64 GB" />               
+                        </h:selectOneMenu> 
+                        
+                         <h:selectOneMenu class="form-control dato" value = "#{appProduct.tipo_meoria}" >
+                            <f:selectItem itemValue = "---Tipo de Memoria---" itemLabel = "---Tipo de Memoria---" /> 
+                            <f:selectItem itemValue = "DDR4 DIMM" itemLabel = "DDR4 DIMM" /> 
+                            <f:selectItem itemValue = "DDR4-SDRAM" itemLabel = "DDR4-SDRAM" />
+           
+                        </h:selectOneMenu> 
+                        <h:selectOneMenu id="almc" class="form-control dato" value="#{appProduct.almacen}">
+                           <f:selectItem itemValue = "---Almacen----" itemLabel="---Almacen----" />
+                           <f:selectItems  value="#{appProduct.listidAlmacen}" itemLabel="appp"  />
+                           
+                       </h:selectOneMenu>
+                        
+                        <h:selectOneMenu class="form-control dato" value = "#{appProduct.status}" >
+                            <f:selectItem itemValue = "---Status---" itemLabel = "---Status---" /> 
+                            <f:selectItem itemValue = "0" itemLabel = "0" /> 
+                            <f:selectItem itemValue = "1" itemLabel = "1" />
+           
+                        </h:selectOneMenu>  
+                        
+                        <h:inputText class="form-control dato" a:placeholder="Precio unitario" value="#{appProduct.prec_uni}"/>
+                        <h:inputText class="form-control dato" a:placeholder="Stock" value="#{appProduct.stock}"/>
+                    </div>
+                   
+                    <div class="botonagr">
+                        <h:commandButton class="btn btn-primary agrProd" value="Registrar" action="#{appProduct.agrProducto()}" />
+                    </div>
+                    
+                    
+                   
+                </h:form>
+            </div>
+            
+        </div>
+       
+    </h:body>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script> 
+</html>
+

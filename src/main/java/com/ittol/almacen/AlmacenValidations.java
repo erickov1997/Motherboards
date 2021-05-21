@@ -6,6 +6,12 @@
 package com.ittol.almacen;
 
 import com.ittol.beans.DBHandler;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,6 +76,24 @@ public class AlmacenValidations {
         
         AlmacenValidations obj = new AlmacenValidations();
     }
+    
+     public void comprar() throws MalformedURLException, IOException{
+     String url = "http://904d8d3ec873.ngrok.io/Motherboards/webresources/com.ittol.almacen.pedidos";
+        String json = "{\"id_prod\":\"12347\",\"cantidad\":\"10\",\"fecha\":\"2021/01/25\",\"total\":\"10\"}";
+
+        String charset = "UTF-8";
+        URLConnection connection = new URL(url).openConnection();
+        connection.setDoOutput(true); // Triggers POST.
+        connection.setRequestProperty("Accept-Charset", charset);
+        connection.setRequestProperty("Content-Type", "application/json;charset=" + charset);
+
+        try (OutputStream output = connection.getOutputStream()) {
+            output.write(json.getBytes(charset));
+        }
+
+        InputStream response = connection.getInputStream();
+         
+     }
     
 }
 
